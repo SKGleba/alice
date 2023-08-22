@@ -9,8 +9,6 @@ SECTIONS
 
 	.text : { 
 		*(.text.vectors) /* exception vectors & cfg ptrs */
-		*(.text.exports) /* basic funcs for external programs */
-		*(.text.exh) /* exception handlers */
 		*(.text*) 
 	}
 

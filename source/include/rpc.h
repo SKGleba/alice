@@ -54,5 +54,6 @@ typedef struct _rpc_buf_s rpc_buf_s;
 extern int g_rpc_status;
 
 void rpc_loop(void);
+void rpc_loop_exclusive(void);
 
 #endif

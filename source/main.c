@@ -8,6 +8,7 @@
 #include "include/coring.h"
 #include "include/rpc.h"
 #include "include/bob.h"
+#include "include/perv.h"
 
 #include "include/zero.h"
 #include "include/one.h"
@@ -22,8 +23,19 @@ void init(int cpu_id) {
     switch (cpu_id) {
     case 0:
 #ifndef SILENT
-        g_uart_bus = UART_BUS;
-        uart_init(g_uart_bus, UART_BAUD_115200);
+        if (xcfg.uart_bus < 0) {
+            xcfg.uart_bus = UART_BUS;
+#ifdef UART_FIND_BUS
+            for (int i = 0; i <= 6; i++) {
+                if (vp(PERV_GET_REG(PERV_CTRL_RESET, (PERV_CTRL_RESET_DEV_UART0 + i))) == 0) {
+                    xcfg.uart_bus = i;
+                    break;
+                }
+            }
+#endif
+        }
+        if (xcfg.uart_rate > 0)
+            uart_init(xcfg.uart_bus, xcfg.uart_rate);
 #endif
         printf("init alice [%X], me @ %X\n", get_build_timestamp(), init);
         zero_init();

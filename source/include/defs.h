@@ -9,6 +9,7 @@
 
 #ifndef SILENT
 #define UART_BUS 1 // default uart bus to print to
+#define UART_FIND_BUS // if defined, will use the first enabled uart bus
 #endif
 
 #define RPC_READ_DELAY 0x2000 // delay between RPC checks
@@ -18,14 +19,5 @@
 // from linker.x
 extern unsigned int prog_bss_addr;
 extern unsigned int prog_bss_end;
-
-// from linker.x include, cfg.x
-extern unsigned int cfg_prog_uses_end;
-extern unsigned int cfg_sp_core0_addr;
-extern unsigned int cfg_sp_core1_addr;
-extern unsigned int cfg_sp_core2_addr;
-extern unsigned int cfg_sp_core3_addr;
-extern unsigned int cfg_max_prog_size;
-extern unsigned int cfg_prog_load_off;
 
 #endif

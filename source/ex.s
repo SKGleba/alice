@@ -43,7 +43,7 @@ exc_RESET:
 	and	r1, r1, #0xF
 
 	# set sp per core based on config from vectors
-	ldr r0, =sp_addr_per_core
+	ldr r0, =xcfg_sp_addr_per_core
 	add r0, r0, r1, lsl #2
 	ldr sp, [r0], #0
 
@@ -74,7 +74,7 @@ exc_EXC:
 	and	r1, r1, #0xF
 
 	# set sp per core based on config from vectors
-	ldr r0, =sp_addr_per_core
+	ldr r0, =xcfg_sp_addr_per_core
 	add r0, r0, r1, lsl #2
 	ldr sp, [r0], #0
 

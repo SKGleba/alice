@@ -11,13 +11,15 @@ struct _core_task_s {
     int ret;
     void* next;
 };
-typedef struct _core_task_s core_task_s;
+typedef volatile struct _core_task_s core_task_s;
 
 #define CORE_TASK_STATUS_ACCEPTED 0b1
 #define CORE_TASK_STATUS_RUNNING 0b10
 #define CORE_TASK_STATUS_DONE 0b100
 #define CORE_TASK_STATUS_ISPTR 0b1000
 #define CORE_TASK_STATUS_FAILED 0x80000000
+
+#define CORE_TASK_TYPE_ISPTR 0x80000000
 
 extern volatile core_task_s* volatile g_core_tasks[4];
 

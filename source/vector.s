@@ -8,7 +8,7 @@
 
 .global vectors_exceptions
 .global vectors_handler_addrs
-.global sp_addr_per_core
+.global info_addrs
 
 vectors_exceptions:
 	.rept 8
@@ -16,17 +16,7 @@ vectors_exceptions:
 	.endr
 
 vectors_handler_addrs:
-	.word exc_RESET
-	.word exc_UNDEF
-	.word exc_SWI
-	.word exc_PABT
-	.word exc_DABT
-	.word exc_RESERVED
-	.word exc_IRQ
-	.word exc_FIQ
+	.word exc_RESET, exc_UNDEF, exc_SWI, exc_PABT, exc_DABT, exc_RESERVED, exc_IRQ, exc_FIQ
 
-sp_addr_per_core:
-	.word cfg_sp_core0_addr
-	.word cfg_sp_core1_addr
-	.word cfg_sp_core2_addr
-	.word cfg_sp_core3_addr
+info_addrs:
+	.word xcfg, exports, g_core_tasks, g_core_status

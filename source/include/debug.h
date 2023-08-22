@@ -4,8 +4,7 @@
 #include "types.h"
 #include "defs.h"
 #include "uart.h"
-
-// codes 0x1-0x2f are reserved for bob use
+#include "main.h"
 
 #ifdef SILENT
 
@@ -18,9 +17,9 @@
 
 #else
 
-#define print(str) uart_print(g_uart_bus, (char *)(str))
+#define print(str) uart_print(xcfg.uart_bus, (char *)(str))
 #define printf debug_printFormat
-#define printn(str, n) uart_printn(g_uart_bus, (char *)(str), n)
+#define printn(str, n) uart_printn(xcfg.uart_bus, (char *)(str), n)
 #define printx(x) debug_printU32((uint32_t)(x), true)
 #define printp(x) printf("%X: %X\n", (uint32_t)(x), vp (x))
 #define hexdump(addr, length, show_addr) debug_printRange(addr, length, (int)show_addr)

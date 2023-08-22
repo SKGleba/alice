@@ -1,5 +1,6 @@
 #include <inttypes.h>
 
+#include "include/clib.h"
 #include "include/uart.h"
 #include "include/debug.h"
 #include "include/defs.h"
@@ -12,16 +13,33 @@
 
 #include "include/zero.h"
 
-void test(void);
+static volatile core_task_s l_zero_rpc_delegate;
 
 int zero_nop(int a, int b, int c, int d) {
     return 1;
+}
+
+int zero_enable_rpc(bool block_bob, int delegate_core) {
+    if (delegate_core) {
+        if (block_bob)
+            l_zero_rpc_delegate.task_id = (int)rpc_loop_exclusive;
+        else
+            l_zero_rpc_delegate.task_id = (int)rpc_loop;
+        return core_schedule_task(delegate_core, &l_zero_rpc_delegate, false, false);
+    }
+    if (block_bob)
+        rpc_loop_exclusive();
+    else
+        rpc_loop();
+    return 0;
 }
 
 void* zero_get_task_by_id(int task_id) {
     switch (task_id) {
     case ZERO_TASKS_NOP:
         return zero_nop;
+    case ZERO_TASKS_ENABLE_RPC:
+        return zero_enable_rpc;
     default:
         return NULL;
     }
@@ -29,8 +47,10 @@ void* zero_get_task_by_id(int task_id) {
 
 void zero_init(void) {
     printf("ready\n");
-    g_core_status[1] |= CORE_STATUS_RUNNING;
+    g_core_status[0] |= CORE_STATUS_RUNNING;
 }
+
+void test(void);
 
 void zero_main(void) {
     test();
@@ -38,46 +58,10 @@ void zero_main(void) {
         core_task_handler(zero_get_task_by_id);
 }
 
-volatile bool l_completed_acquire; // bss clear on reset will set to 0x0 / false
-
 void test(void) {
     printf("test test test\n");
     {
-        int ret = 0;
-
-        if (!l_completed_acquire) {
-            printf("acquiring bob arm interface..\n");
-            bob_sendSimpleCmd(BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD);
-            printf("acquiring jig rpc..\n");
-            bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, true, 0);
-            do {
-                delay(0x6000);
-                ret = bob_sendSimpleCmd(BOB_A2B_GET_RPC_STATUS, 0, 0, 0);
-            } while (!(ret & RPC_STATUS_BLOCKED));
-
-            printf("acquired jig rpc\n");
-            l_completed_acquire = true;
-        } else
-            printf("already acquired jig rpc\n");
-
-        rpc_loop();
-
-        printf("rpc loop exited, giving rpc back to bob\n");
-        bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, false, 0);
-        delay(0x6000);
-        bob_sendSimpleCmd(BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD);
-
-        printf("infiniloop\n");
-
-        /*
-            since we are the main "task giver", reset should give us a clean bss slate imo
-            one-time flags such as device inits should be set in .data
-            this is until we add proper interrupt handling
-        */
-        g_bss_cleared = false;
-
-        while (1)
-            wfe();
+        zero_enable_rpc(true, 0);
     }
 
     printf("all tests done\n");

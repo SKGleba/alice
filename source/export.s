@@ -6,6 +6,8 @@
 
 .section .text.exports
 
+.global exports
+
 .macro STATIC_EXPORT func
 .global x_\func
 x_\func:
@@ -14,6 +16,7 @@ xa_\func:
 	.word \func
 .endm
 
+exports:
 STATIC_EXPORT main
 STATIC_EXPORT init
 STATIC_EXPORT debug_printFormat

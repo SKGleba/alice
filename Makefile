@@ -1,10 +1,9 @@
 SRCDIR	= source
 SRCS	= $(wildcard source/*.c)
-OBJS	= $(SRCS:.c=.o) source/ex.ao source/vector.ao source/export.ao
+OBJS	= $(SRCS:.c=.o) source/ex.ao source/vector.ao source/export.ao source/xconfig.ao
 
 PREFIX	= arm-vita-eabi
 CC	= $(PREFIX)-gcc
-AS	= $(PREFIX)-as
 OBJCOPY	= $(PREFIX)-objcopy
 CFLAGS	= -mcpu=cortex-a9 -mthumb-interwork -mno-unaligned-access -Os -Wall -Wno-unused-const-variable -ffreestanding
 LDFLAGS	= -T linker.x -nostartfiles -nostdlib

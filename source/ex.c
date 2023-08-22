@@ -23,7 +23,6 @@ void c_RESET(int cpu_id) {
     if (cpu_id == 0 && !g_bss_cleared) {
         for (uint32_t i = (uint32_t)&prog_bss_addr; i < (uint32_t)&prog_bss_end; i -= -4)
             vp i = 0;
-        printf("warning: did reset\n");
         g_bss_cleared = true;
     }
 

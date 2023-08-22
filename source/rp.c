@@ -14,6 +14,7 @@ int g_rpc_status;
 
 static volatile core_task_s l_rpc_glitch_watchdog_task;
 static volatile core_task_s l_rpc_sk_reset_loop_task;
+volatile bool l_completed_acquire; // bss clear on reset will set to 0x0 / false
 
 void rpc_loop(void) {
     uint8_t xsize = 0; // rpc cmd extra return sz
@@ -102,13 +103,13 @@ void rpc_loop(void) {
             break;
         case RPC_CMD_ENABLE_GLITCH_WATCHDOG:
             l_rpc_glitch_watchdog_task.args[0] = rpc_buf.cmd.args[1];
-            l_rpc_glitch_watchdog_task.task_id = (int)glitch_watchdog;
+            l_rpc_glitch_watchdog_task.task_id = (int)glitch_watchdog | CORE_TASK_TYPE_ISPTR;
             cret = core_schedule_task(rpc_buf.cmd.args[0], (core_task_s*)&l_rpc_glitch_watchdog_task, false, false);
             break;
         case RPC_CMD_SK_RESET_LOOP:
-            l_rpc_glitch_watchdog_task.args[0] = rpc_buf.cmd.args[1];
-            l_rpc_glitch_watchdog_task.args[1] = rpc_buf.cmd.args[2];
-            l_rpc_glitch_watchdog_task.task_id = (int)glitch_loopSKR;
+            l_rpc_sk_reset_loop_task.args[0] = rpc_buf.cmd.args[1];
+            l_rpc_sk_reset_loop_task.args[1] = rpc_buf.cmd.args[2];
+            l_rpc_sk_reset_loop_task.task_id = (int)glitch_loopSKR | CORE_TASK_TYPE_ISPTR;
             cret = core_schedule_task(rpc_buf.cmd.args[0], (core_task_s*)&l_rpc_sk_reset_loop_task, false, false);
             break;
         case RPC_CMD_BOB_READ32:
@@ -169,4 +170,29 @@ void rpc_loop(void) {
     g_rpc_status &= 0xFFFF0000; // clear status, keep requests
 
     printf("exiting RPC mode\n");
+}
+
+void rpc_loop_exclusive(void) {
+    if (!l_completed_acquire) {
+        printf("acquiring bob arm interface..\n");
+        bob_sendSimpleCmd(BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD);
+        printf("acquiring jig rpc..\n");
+        bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, true, 0);
+        do {
+            delay(0x6000);
+        } while (!(bob_sendSimpleCmd(BOB_A2B_GET_RPC_STATUS, 0, 0, 0) & RPC_STATUS_BLOCKED));
+
+        printf("acquired jig rpc\n");
+        l_completed_acquire = true;
+    } else
+        printf("already acquired jig rpc\n");
+
+    rpc_loop();
+
+    printf("rpc loop exited, giving rpc back to bob\n");
+    bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, false, 0);
+    delay(0x6000);
+    bob_sendSimpleCmd(BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD);
+
+    l_completed_acquire = false;
 }
