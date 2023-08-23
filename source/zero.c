@@ -22,9 +22,9 @@ int zero_nop(int a, int b, int c, int d) {
 int zero_enable_rpc(bool block_bob, int delegate_core) {
     if (delegate_core) {
         if (block_bob)
-            l_zero_rpc_delegate.task_id = (int)rpc_loop_exclusive;
+            l_zero_rpc_delegate.task_id = (int)rpc_loop_exclusive | CORE_TASK_TYPE_ISPTR;
         else
-            l_zero_rpc_delegate.task_id = (int)rpc_loop;
+            l_zero_rpc_delegate.task_id = (int)rpc_loop | CORE_TASK_TYPE_ISPTR;
         return core_schedule_task(delegate_core, &l_zero_rpc_delegate, false, false);
     }
     if (block_bob)
