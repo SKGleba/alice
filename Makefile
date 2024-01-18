@@ -1,3 +1,5 @@
+PSP2REF_DIR=psp2ref
+
 SRCDIR	= source
 SRCS	= $(wildcard source/*.c)
 OBJS	= $(SRCS:.c=.o) source/ex.ao source/vector.ao source/export.ao source/xconfig.ao
@@ -5,7 +7,7 @@ OBJS	= $(SRCS:.c=.o) source/ex.ao source/vector.ao source/export.ao source/xconf
 PREFIX	= arm-vita-eabi
 CC	= $(PREFIX)-gcc
 OBJCOPY	= $(PREFIX)-objcopy
-CFLAGS	= -mcpu=cortex-a9 -mthumb-interwork -mno-unaligned-access -Os -Wall -Wno-unused-const-variable -ffreestanding
+CFLAGS	= -mcpu=cortex-a9 -mthumb-interwork -mno-unaligned-access -Os -Wall -Wno-unused-const-variable -ffreestanding -I$(PSP2REF_DIR)
 LDFLAGS	= -T linker.x -nostartfiles -nostdlib
 ASFLAGS	=
 

@@ -1,26 +1,27 @@
-#include "include/types.h"
-#include "include/defs.h"
-#include "include/utils.h"
-#include "include/debug.h"
-#include "include/ex.h"
-#include "include/clib.h"
-#include "include/maika.h"
-#include "include/paddr.h"
-#include "include/perv.h"
-
 #include "include/compat.h"
+
+#include <hardware/maika.h>
+#include <hardware/paddr.h>
+
+#include "include/clib.h"
+#include "include/debug.h"
+#include "include/defs.h"
+#include "include/ex.h"
+#include "include/perv.h"
+#include "include/types.h"
+#include "include/utils.h"
 
 int compat_loadSK(uint32_t addr, bool second) {
     maika_s* maika = (maika_s*)MAIKA_OFFSET;
     printf("performing f00d reset\n");
     if (second) {
-        maika->reset_ctrl.f00d_reset_8 = 1;
-        maika->reset_ctrl.f00d_reset_8 = 0;
-        while (maika->reset_ctrl.f00d_reset_8) {};
+        maika->reset_ctrl.f00d_cycle_reset = 1;
+        maika->reset_ctrl.f00d_cycle_reset = 0;
+        while (maika->reset_ctrl.f00d_cycle_reset) {};
     } else {
-        maika->reset_ctrl.f00d_reset_0 = 1;
-        maika->reset_ctrl.f00d_reset_0 = 0;
-        while (maika->reset_ctrl.f00d_reset_0) {};
+        maika->reset_ctrl.f00d_reset = 1;
+        maika->reset_ctrl.f00d_reset = 0;
+        while (maika->reset_ctrl.f00d_reset) {};
     }
     
     int ret = 0;

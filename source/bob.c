@@ -3,8 +3,9 @@
 #include "include/utils.h"
 #include "include/debug.h"
 #include "include/rpc.h"
-#include "include/paddr.h"
-#include "include/maika.h"
+
+#include <hardware/maika.h>
+#include <hardware/paddr.h>
 
 #include "include/bob.h"
 

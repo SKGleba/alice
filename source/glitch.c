@@ -1,16 +1,16 @@
-#include "include/types.h"
-
-#include "include/defs.h"
-#include "include/uart.h"
-#include "include/maika.h"
-#include "include/debug.h"
-#include "include/utils.h"
-#include "include/clib.h"
-#include "include/gpio.h"
-#include "include/paddr.h"
-#include "include/compat.h"
-
 #include "include/glitch.h"
+
+#include <hardware/maika.h>
+#include <hardware/paddr.h>
+
+#include "include/clib.h"
+#include "include/compat.h"
+#include "include/debug.h"
+#include "include/defs.h"
+#include "include/gpio.h"
+#include "include/types.h"
+#include "include/uart.h"
+#include "include/utils.h"
 
 volatile bool l_glitch_success;
 
