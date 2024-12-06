@@ -23,6 +23,11 @@ RPC_COMMANDS = {
     "loop_load_sk" : 0xc,
     "bob_read32" : 0xd,
     "bob_write32" : 0xe,
+    "init_storage" : 0xf,
+    "read_sd" : 0x10,
+    "write_sd" : 0x11,
+    "read_emmc" : 0x12,
+    "write_emmc" : 0x13,
     "copyto" : 0x40,
     "copyfrom" : 0x41,
     "exec" : 0x42, # exec arg0(arg1, arg2, &extra) | ret to arg0
@@ -122,6 +127,15 @@ def handle_cmd(user_cmd, argv):
         case "push_reply":
             wait4push = int(argv[0][2:], 16)
             handle_cmd("push", argv)
+        case "exece":
+            cv_argv = ["0x0", "0x0", "0x0", ""]
+            for x,arg in enumerate(argv):
+                if x < 3:
+                    cv_argv[x] = argv[x]
+                else:
+                    cv_argv[3] += swapstr32("{:08X}".format(int(argv[x][2:], 16)))
+            cv_argv[3] = cv_argv[3].ljust(48, "0")
+            return handle_cmd("execbig", cv_argv)
         case _:
             if user_cmd in RPC_COMMANDS:
                 cv_argv = ["0x0", "0x0", "0x0", ""]

@@ -12,6 +12,6 @@ void zero_main(void);
 void zero_init(void);
 void* zero_get_task_by_id(int task_id);
 int zero_nop(int a, int b, int c, int d);
-int zero_enable_rpc(bool block_bob, int delegate_core);
+int zero_enable_rpc(bool block_bob, int delegate_core, bool direct);
 
 #endif

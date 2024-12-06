@@ -26,6 +26,7 @@ extern volatile core_task_s* volatile g_core_tasks[4];
 #define CORE_STATUS_RUNNING 0b1 // core is running
 #define CORE_STATUS_WAITING 0b10 // core is waiting
 #define CORE_STATUS_TASKING 0b100 // core is running a task (chain)
+#define CORE_STATUS_VALIDS 0b111 // valid status mask
 
 extern volatile int g_core_status[4];
 

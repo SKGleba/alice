@@ -19,18 +19,20 @@ int zero_nop(int a, int b, int c, int d) {
     return 1;
 }
 
-int zero_enable_rpc(bool block_bob, int delegate_core) {
+int zero_enable_rpc(bool block_bob, int delegate_core, bool direct) {
     if (delegate_core) {
-        if (block_bob)
-            l_zero_rpc_delegate.task_id = (int)rpc_loop_exclusive | CORE_TASK_TYPE_ISPTR;
-        else
+        if (direct)
             l_zero_rpc_delegate.task_id = (int)rpc_loop | CORE_TASK_TYPE_ISPTR;
+        else {
+            l_zero_rpc_delegate.task_id = (int)rpc_loop_bobcompat | CORE_TASK_TYPE_ISPTR;
+            l_zero_rpc_delegate.args[0] = block_bob;
+        }
         return core_schedule_task(delegate_core, &l_zero_rpc_delegate, false, false);
     }
-    if (block_bob)
-        rpc_loop_exclusive();
-    else
+    if (direct)
         rpc_loop();
+    else
+        rpc_loop_bobcompat(block_bob);
     return 0;
 }
 
@@ -61,7 +63,7 @@ void zero_main(void) {
 void test(void) {
     printf("test test test\n");
     {
-        zero_enable_rpc(true, 0);
+        zero_enable_rpc(true, 0, false);
     }
 
     printf("all tests done\n");

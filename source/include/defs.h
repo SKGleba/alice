@@ -16,8 +16,12 @@
 #define RPC_WRITE_DELAY 0x100 // delay before replying to a RPC
 #define RPC_BLOCKED_DELAY 0x100 // delay between g_status check for unblock
 
+#define SDIF_UNUSE // dont include the storage/sdif code (very large, around 6kb)
+#define SDIF_NOINITS // dont include the storage/sdif init functions (saves around 2kb, requires ctx import)
+
 // from linker.x
 extern unsigned int prog_bss_addr;
 extern unsigned int prog_bss_end;
+extern unsigned int cfg_phys_load_off;
 
 #endif

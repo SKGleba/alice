@@ -3,14 +3,15 @@
 
 static inline void pervasive_mask_or(unsigned int addr, unsigned int val) {
     *(uint32_t*)addr |= val;
+    dsb();
+    { __attribute__((unused)) volatile uint32_t temp = vp addr; }
     dmb();
-    *(uint32_t*)addr;
 }
 
 static inline void pervasive_mask_and_not(unsigned int addr, unsigned int val) {
     *(uint32_t*)addr &= ~val; // is that right? bic on arm
     dsb();
-    *(uint32_t*)addr;
+    { __attribute__((unused)) volatile uint32_t temp = vp addr; }
     dmb();
 }
 
@@ -23,8 +24,8 @@ uint32_t pervasive_control_reset(int device, unsigned int mask, bool reset, bool
         vp addr &= ~mask;
     
     dsb();
-        
-    vp addr;
+
+    { __attribute__((unused)) volatile uint32_t temp = vp addr; }
 
     dmb();
     
@@ -50,8 +51,8 @@ uint32_t pervasive_control_gate(int device, unsigned int mask, bool open, bool w
         vp addr &= ~mask;
 
     dsb();
-        
-    vp addr;
+
+    { __attribute__((unused)) volatile uint32_t temp = vp addr; }
 
     dmb();
 
@@ -74,7 +75,7 @@ uint32_t pervasive_control_clock(int device, unsigned int clock, bool wait) {
 
     dmb();
 
-    vp addr;
+    { __attribute__((unused)) volatile uint32_t temp = vp addr; }
 
     if (wait) {
         while (vp(addr) != clock)
@@ -90,7 +91,7 @@ uint32_t pervasive_control_misc(int reg_id, unsigned int value, bool wait) {
 
     dmb();
 
-    vp addr;
+    { __attribute__((unused)) volatile uint32_t temp = vp addr; }
 
     if (wait) {
         while (vp(addr) != value)

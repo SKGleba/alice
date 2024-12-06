@@ -8,11 +8,14 @@
 #define p *(uint32_t*)
 #define vp *(volatile uint32_t*)
 
-// wait for ~n * 200 cycles
-void delay(int n);
+void delay_nx(int n, int x);
+extern void delay(int n);
 
 // get compile timestamp
 __attribute__((noinline)) uint32_t get_build_timestamp(void);
+
+// stub func for disabled features
+int stub();
 
 unsigned int get_cpu_id(void);
 

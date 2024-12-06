@@ -67,34 +67,26 @@ exc_RESET:
 	mcr p15, 0, r0, c2, c0, 2
 	dsb SY
 
+	# clean & invalidate l1 dcache
+	mov r1, #0x8000
+1:
+	mcr p15, 0, r0, c7, c14, 2
+	add r0, r0, #0x20
+	cmp r0, r1
+	bne 1b
+	dsb SY
+
 	# get current core
 	mrc	p15, 0, r1, c0, c0, 5
 	and	r1, r1, #0xF
 
-	# clean & invalidate the shared dcache, cant use sw mutexes as they are data
-	# so we assign a static region to each core
-	lsl r0, r1, #13
-	add r2, r0, #0x2000
-1:
-	mcr p15, 0, r0, c7, c14, 2
-	add r0, r0, #0x20
-	cmp r0, r2
-	bne 1b
-	dsb SY
-
-	# disable l2 cache ctrl
-	# TODO: remove?
-	movs r0, r1
-	bne 2f
-	movt r2, #0x1a00
-	str r0, [r2, #0x100]
-	dsb SY
-
-2:
 	# set sp per core based on config from vectors
 	ldr r0, =xcfg_sp_addr_per_core
-	add r0, r0, r1, lsl #2
-	ldr sp, [r0], #0
+	ldr sp, [r0, r1, lsl #2]
+
+	# hello world
+	ldr r0, =g_core_status
+	str sp, [r0, r1, lsl #2]
 
 	# c reset (can be thumb)
 	mov r0, r1
@@ -124,8 +116,7 @@ exc_EXC:
 
 	# set sp per core based on config from vectors
 	ldr r0, =xcfg_sp_addr_per_core
-	add r0, r0, r1, lsl #2
-	ldr sp, [r0], #0
+	ldr sp, [r0, r1, lsl #2]
 
 	# c exc (can be thumb)
 	mov r0, r1

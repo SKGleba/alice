@@ -8,7 +8,6 @@
 
 .global xcfg
 .type xcfg, "object"
-.global xcfg_sp_addr_per_core
 
 .macro ADD_XCFG_ENTRY name value:vararg
 .global xcfg_\name

@@ -7,6 +7,7 @@
 #include "include/coring.h"
 #include "include/glitch.h"
 #include "include/bob.h"
+#include "include/stor.h"
 
 #include "include/rpc.h"
 
@@ -32,12 +33,12 @@ void rpc_loop(void) {
     printf("entering RPC mode, delay %X\n", delay_cval);
     g_rpc_status |= RPC_STATUS_RUNNING;
     while (true) {
-        delay(delay_cval);
+        delay_nx(delay_cval, 200);
 
         if (g_rpc_status & RPC_STATUS_REQUEST_BLOCK) {
             g_rpc_status |= RPC_STATUS_BLOCKED;
             while (g_rpc_status & RPC_STATUS_REQUEST_BLOCK) {
-                delay(RPC_BLOCKED_DELAY);
+                delay_nx(RPC_BLOCKED_DELAY, 200);
             }
             g_rpc_status &= ~RPC_STATUS_BLOCKED;
         }
@@ -118,6 +119,24 @@ void rpc_loop(void) {
         case RPC_CMD_BOB_WRITE32:
             cret = bob_sendSimpleCmd(BOB_A2B_WRITE32, rpc_buf.cmd.args[0], rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
             break;
+        case RPC_CMD_INIT_STORAGE:  // (bool: emmc?)
+            if ((bool)rpc_buf.cmd.args[0])
+                cret = stor_init_emmc(rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
+            else
+                cret = stor_init_sd(rpc_buf.cmd.args[1]);
+            break;
+        case RPC_CMD_READ_SD:
+            cret = stor_read_sd(rpc_buf.cmd.args[0], (void *)rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
+            break;
+        case RPC_CMD_WRITE_SD:
+            cret = stor_write_sd(rpc_buf.cmd.args[0], (void *)rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
+            break;
+        case RPC_CMD_READ_EMMC:
+            cret = stor_read_emmc(rpc_buf.cmd.args[0], (void *)rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
+            break;
+        case RPC_CMD_WRITE_EMMC:
+            cret = stor_write_emmc(rpc_buf.cmd.args[0], (void *)rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
+            break;
 
         case RPC_CMD_COPYTO:
             cret = (uint32_t)memcpy((void*)rpc_buf.cmd.args[0], rpc_buf.extra_data, rpc_buf.cmd.args[1]);
@@ -143,7 +162,7 @@ void rpc_loop(void) {
 
         g_rpc_status &= ~RPC_STATUS_INCMD;
 
-        delay(delay_rval);
+        delay_nx(delay_rval, 200);
 
         printf("RPC RET %X\n", cret);
         
@@ -172,26 +191,30 @@ void rpc_loop(void) {
     printf("exiting RPC mode\n");
 }
 
-void rpc_loop_exclusive(void) {
+void rpc_loop_bobcompat(bool exclusive) {
     if (!l_completed_acquire) {
         printf("acquiring bob arm interface..\n");
         bob_sendSimpleCmd(BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD);
-        printf("acquiring jig rpc..\n");
-        bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, true, 0);
-        do {
-            delay(0x6000);
-        } while (!(bob_sendSimpleCmd(BOB_A2B_GET_RPC_STATUS, 0, 0, 0) & RPC_STATUS_BLOCKED));
-
-        printf("acquired jig rpc\n");
+        if (exclusive) {
+            printf("acquiring jig rpc..\n");
+            bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, true, 0);
+            do {
+                delay_nx(0x6000, 200);
+            } while (!(bob_sendSimpleCmd(BOB_A2B_GET_RPC_STATUS, 0, 0, 0) & RPC_STATUS_BLOCKED));
+            printf("acquired jig rpc\n");
+        }
         l_completed_acquire = true;
     } else
         printf("already acquired jig rpc\n");
 
     rpc_loop();
 
-    printf("rpc loop exited, giving rpc back to bob\n");
-    bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, false, 0);
-    delay(0x6000);
+    if (exclusive) {
+        printf("rpc loop exited, giving jig rpc back to bob\n");
+        bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, false, 0);
+        delay_nx(0x6000, 200);
+    }
+    printf("relinquishing bob arm interface\n");
     bob_sendSimpleCmd(BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD);
 
     l_completed_acquire = false;

@@ -31,10 +31,17 @@ enum RPC_COMMANDS {
     RPC_CMD_SK_RESET_LOOP,
     RPC_CMD_BOB_READ32,
     RPC_CMD_BOB_WRITE32,
+    RPC_CMD_INIT_STORAGE,
+    RPC_CMD_READ_SD,
+    RPC_CMD_WRITE_SD,
+    RPC_CMD_READ_EMMC,
+    RPC_CMD_WRITE_EMMC,
+    RPC_CMD_IMPORT_SDIF_CTX,
+    RPC_CMD_EXPORT_SDIF_CTX,
     RPC_CMD_COPYTO = RPC_FLAG_EXTRA,
     RPC_CMD_COPYFROM,
-    RPC_CMD_EXEC, // exec arg0(arg1, arg2, &extra) | ret to arg0
-    RPC_CMD_EXEC_EXTENDED // exec argX(extra32[X], extra32[X+1], extra32[X+2], extra32[X+3]) | rets to argX
+    RPC_CMD_EXEC,          // exec arg0(arg1, arg2, &extra) | ret to arg0
+    RPC_CMD_EXEC_EXTENDED  // exec argX(extra32[X], extra32[X+1], extra32[X+2], extra32[X+3]) | rets to argX
 };
 
 struct _rpc_cmd_s { // size is 0x10
@@ -54,6 +61,6 @@ typedef struct _rpc_buf_s rpc_buf_s;
 extern int g_rpc_status;
 
 void rpc_loop(void);
-void rpc_loop_exclusive(void);
+void rpc_loop_bobcompat(bool exclusive);
 
 #endif
