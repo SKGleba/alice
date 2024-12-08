@@ -14,6 +14,7 @@
 #define printx(x)
 #define printp(x)
 #define hexdump(addr, length, show_addr)
+#define _PF()
 
 #else
 
@@ -23,6 +24,7 @@
 #define printx(x) debug_printU32((uint32_t)(x), true)
 #define printp(x) printf("%X: %X\n", (uint32_t)(x), vp (x))
 #define hexdump(addr, length, show_addr) debug_printRange(addr, length, (int)show_addr)
+#define _PF() printf("%s:%X\n", __FUNCTION__, __LINE__)
 
 #endif
 

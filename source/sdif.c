@@ -23,14 +23,14 @@ static void sdif_cfgwait_regs16_x19nx1b(unk_sdif_ctx_init *param_1, uint32_t par
         do {
         } while (puVar1[0x1b] != 0);
         if ((param_2 & 0xf) != 0) {
-            *(uint8_t *)((int)puVar1 + 0x2f) = 2;
+            v8p((int)puVar1 + 0x2f) = 2;
             do {
-            } while ((*(volatile uint8_t *)((int)puVar1 + 0x2f) & 2) != 0);
+            } while ((v8p((int)puVar1 + 0x2f) & 2) != 0);
         }
         if ((param_2 & 0x70) != 0) {
-            *(uint8_t *)((int)puVar1 + 0x2f) = 4;
+            v8p((int)puVar1 + 0x2f) = 4;
             do {
-            } while ((*(volatile uint8_t *)((int)puVar1 + 0x2f) & 4) != 0);
+            } while ((v8p((int)puVar1 + 0x2f) & 4) != 0);
         }
         puVar1[0x19] = puVar1[0x19];
         do {
@@ -66,7 +66,7 @@ static void sdif_rx_maybe(unk_sdif_ctx_init *ctx, uint32_t param_2, uint32_t par
                 puVar3 = ctx->sdif_regs_addr;
                 psVar1->sector_count = psVar1->sector_count - 1;
                 do {
-                } while ((*(volatile uint32_t *)(puVar3 + 0x12) & 0x800) == 0);
+                } while ((v32p(puVar3 + 0x12) & 0x800) == 0);
                 iVar6 = 0;
                 if (0 < (int)psVar1->sector_size) {
                     do {
@@ -74,23 +74,23 @@ static void sdif_rx_maybe(unk_sdif_ctx_init *ctx, uint32_t param_2, uint32_t par
                         if (iVar8 == 1) {
                             puVar9 = (uint8_t *)(iVar6 + uVar2);
                             iVar6 = iVar6 + 1;
-                            *puVar9 = *(uint8_t *)(puVar3 + 0x10);
+                            *puVar9 = v8p(puVar3 + 0x10);
                         } else {
                             puVar10 = (uint32_t *)(uVar2 + iVar6);
                             if (iVar8 < 4) {
                                 uVar4 = puVar3[0x10];
                                 iVar6 = iVar6 + 2;
-                                *(char *)puVar10 = (char)uVar4;
-                                *(char *)((int)puVar10 + 1) = (char)(uVar4 >> 8);
+                                v8p puVar10 = (uint8_t)uVar4;
+                                v8p((int)puVar10 + 1) = (uint8_t)(uVar4 >> 8);
                             } else {
-                                uVar5 = *(uint32_t *)(puVar3 + 0x10);
+                                uVar5 = v32p(puVar3 + 0x10);
                                 if ((uVar2 & 3) == 0) {
                                     *puVar10 = uVar5;
                                 } else {
-                                    *(char *)puVar10 = (char)uVar5;
-                                    *(char *)((int)puVar10 + 1) = (char)((uint32_t)uVar5 >> 8);
-                                    *(char *)((int)puVar10 + 3) = (char)((uint32_t)uVar5 >> 0x18);
-                                    *(char *)((int)puVar10 + 2) = (char)((uint32_t)uVar5 >> 0x10);
+                                    v8p puVar10 = (uint8_t)uVar5;
+                                    v8p((int)puVar10 + 1) = (uint8_t)((uint32_t)uVar5 >> 8);
+                                    v8p((int)puVar10 + 3) = (uint8_t)((uint32_t)uVar5 >> 0x18);
+                                    v8p((int)puVar10 + 2) = (uint8_t)((uint32_t)uVar5 >> 0x10);
                                 }
                                 iVar6 = iVar6 + 4;
                             }
@@ -104,7 +104,7 @@ static void sdif_rx_maybe(unk_sdif_ctx_init *ctx, uint32_t param_2, uint32_t par
                 puVar3 = ctx->sdif_regs_addr;
                 psVar1->sector_count = psVar1->sector_count - 1;
                 do {
-                } while ((*(volatile uint32_t *)(puVar3 + 0x12) & 0x400) == 0);
+                } while ((v32p(puVar3 + 0x12) & 0x400) == 0);
                 iVar6 = 0;
                 if (0 < (int)psVar1->sector_size) {
                     do {
@@ -112,21 +112,21 @@ static void sdif_rx_maybe(unk_sdif_ctx_init *ctx, uint32_t param_2, uint32_t par
                         if (iVar8 == 1) {
                             puVar9 = (uint8_t *)(iVar6 + uVar2);
                             iVar6 = iVar6 + 1;
-                            *(uint8_t *)(puVar3 + 0x10) = *puVar9;
+                            v8p(puVar3 + 0x10) = *puVar9;
                         } else {
                             puVar10 = (uint32_t *)(iVar6 + uVar2);
                             if (iVar8 < 4) {
                                 iVar6 = iVar6 + 2;
-                                puVar3[0x10] = CONCAT11(*(uint8_t *)((int)puVar10 + 1), *(uint8_t *)puVar10);
+                                puVar3[0x10] = CONCAT11(v8p((int)puVar10 + 1), v8p puVar10);
                             } else {
                                 if ((uVar2 & 3) == 0) {
                                     uVar5 = *puVar10;
                                 } else {
-                                    uVar5 = CONCAT13(*(uint8_t *)((int)puVar10 + 3),
-                                                     CONCAT12(*(uint8_t *)((int)puVar10 + 2), CONCAT11(*(uint8_t *)((int)puVar10 + 1), *(uint8_t *)puVar10)));
+                                    uVar5 = CONCAT13(v8p((int)puVar10 + 3),
+                                                     CONCAT12(v8p((int)puVar10 + 2), CONCAT11(v8p((int)puVar10 + 1), v8p puVar10)));
                                 }
                                 iVar6 = iVar6 + 4;
-                                *(uint32_t *)(puVar3 + 0x10) = uVar5;
+                                v32p(puVar3 + 0x10) = uVar5;
                             }
                         }
                     } while (iVar6 < (int)psVar1->sector_size);
@@ -134,7 +134,7 @@ static void sdif_rx_maybe(unk_sdif_ctx_init *ctx, uint32_t param_2, uint32_t par
                 psVar1->dst_addr = psVar1->dst_addr + psVar1->sector_size;
             }
             if ((param_2 & 2) != 0) {
-                psVar7 = (sdif_arg_s *)(int)*(char *)((int)&ctx->dev_id + 1);
+                psVar7 = (sdif_arg_s *)(int)v8p((int)&ctx->dev_id + 1);
                 if (psVar7 != (sdif_arg_s *)0x0) {
                     psVar7 = (sdif_arg_s *)0x0;
                     psVar1->some_arg1 = psVar1->some_arg1 | 0x80000000;
@@ -162,23 +162,23 @@ static void sdif_prep_txarg(unk_sdif_ctx_init *param_1, sdif_arg_s *param_2) {
     param_2->unk_11 = 0;
     uVar4 = param_2->some_arg1 & 0xf8;
     if (((((uVar4 == 0x90) || (uVar4 == 0x80)) || (uVar4 == 0x78)) || ((uVar4 == 0x60 || (uVar4 == 0x50)))) || (uVar4 == 0x40)) {
-        param_2->unk_4 = *(uint32_t *)(regs + 8);
+        param_2->unk_4 = v32p(regs + 8);
     } else if (uVar4 == 0x30) {
-        uVar4 = *(uint32_t *)(regs + 8);
-        uVar1 = *(uint32_t *)(regs + 10);
-        uVar2 = *(uint32_t *)(regs + 0xc);
-        iVar3 = *(int *)(regs + 0xe);
+        uVar4 = v32p(regs + 8);
+        uVar1 = v32p(regs + 10);
+        uVar2 = v32p(regs + 0xc);
+        iVar3 = *(volatile int *)(regs + 0xe);
         param_2->unk_4 = uVar4 << 8;
         param_2->unk_5 = uVar1 << 8 | uVar4 >> 0x18;
         param_2->unk_6 = uVar2 << 8 | uVar1 >> 0x18;
         param_2->unk_7 = iVar3 << 8 | uVar2 >> 0x18;
-    } else if (((uVar4 == 0x28) || (uVar4 == 0x10)) && (param_2->unk_4 = *(uint32_t *)(regs + 8), (param_2->some_arg1 & 0x800) != 0)) {
-        param_2->unk_7 = *(uint32_t *)(regs + 0xe);
+    } else if (((uVar4 == 0x28) || (uVar4 == 0x10)) && (param_2->unk_4 = v32p(regs + 8), (param_2->some_arg1 & 0x800) != 0)) {
+        param_2->unk_7 = v32p(regs + 0xe);
     }
     if ((param_2->some_arg1 & 0x3000) != 0) {
-        *(uint8_t *)((int)regs + 0x2f) = 6;
+        v8p((int)regs + 0x2f) = 6;
         do {
-        } while ((*(volatile uint8_t *)((int)regs + 0x2f) & 6) != 0);
+        } while ((v8p((int)regs + 0x2f) & 6) != 0);
     }
     return;
 }
@@ -190,7 +190,7 @@ static void sdif_tx_maybe(unk_sdif_ctx_init *ctx, uint32_t param_2, uint32_t par
     if (psVar1 != (sdif_arg_s *)0x0) {
         if (param_3 == 0) {
             if ((param_2 & 1) != 0) {
-                *(uint8_t *)((int)&ctx->dev_id + 1) = 1;
+                v8p((int)&ctx->dev_id + 1) = 1;
                 sdif_prep_txarg(ctx, psVar1);
                 if ((ctx->sdif_arg2 == (sdif_arg_s *)0x0) && ((psVar1->some_arg1 & 8) == 0)) {
                     psVar1->some_arg1 = psVar1->some_arg1 | 0x80000000;
@@ -231,6 +231,7 @@ static uint32_t sdif_trans_action(uint32_t dev_id, unk_sdif_ctx_init *ctx) {
         } while ((sdif[0x19] & 0x70) != 0);
         sdif_rx_maybe(ctx, (uint32_t)(uVar1 & 0xfe3f), (uint32_t)uVar2);
     }
+    
     return 0;
 }
 
@@ -243,14 +244,15 @@ static uint32_t write_args(unk_sdif_ctx_init *ctx, sdif_arg_s *op) {
 
     op->unk_11 = 0;
     op->some_arg1 = op->some_arg1 & 0x3fffffff;
-    *(uint8_t *)((int)&ctx->dev_id + 1) = 0;
+    v8p((int)&ctx->dev_id + 1) = 0;
     ctx->sdif_arg2 = (sdif_arg_s *)0x0;
     sdif_regs = ctx->sdif_regs_addr;
     ctx->sdif_arg = op;
+    
     do {
         do {
-        } while ((*(uint32_t *)(sdif_regs + 0x12) & 1) != 0);
-    } while ((op->op_id != 0xc) && ((((op->some_arg1 & 7) == 4 || ((op->some_arg1 & 0xf8) == 0x28)) && ((*(uint32_t *)(sdif_regs + 0x12) & 2) != 0))));
+        } while ((v32p(sdif_regs + 0x12) & 1) != 0);
+    } while ((op->op_id != 0xc) && ((((op->some_arg1 & 7) == 4 || ((op->some_arg1 & 0xf8) == 0x28)) && ((v32p(sdif_regs + 0x12) & 2) != 0))));
     uVar4 = op->some_arg1 & 0xf8;
     if (uVar4 == 0x30) {
         uVar3 = 9;
@@ -263,11 +265,12 @@ static uint32_t write_args(unk_sdif_ctx_init *ctx, sdif_arg_s *op) {
     } else {
         uVar3 = 0;
     }
+    
     uVar4 = op->some_arg1 & 7;
     if (uVar4 == 4) {
         ctx->sdif_arg2 = op;
-        *(uint8_t *)(sdif_regs + 0x17) = 0xe;
-        *(uint8_t *)(sdif_regs + 0x14) = *(uint8_t *)(sdif_regs + 0x14) & 0xe7;
+        v8p(sdif_regs + 0x17) = 0xe;
+        v8p(sdif_regs + 0x14) = v8p(sdif_regs + 0x14) & 0xe7;
         sdif_regs[2] = (uint16_t)op->sector_size | 0x7000;
         sdif_regs[3] = (uint16_t)op->sector_count;
         uVar1 = 0;
@@ -284,20 +287,22 @@ static uint32_t write_args(unk_sdif_ctx_init *ctx, sdif_arg_s *op) {
         } else if (1 < (int)op->sector_count) {
             uVar1 = uVar1 | 0x22;
         }
-        *(uint32_t *)(sdif_regs + 4) = op->sector;
+        v32p(sdif_regs + 4) = op->sector;
         sdif_regs[6] = uVar1;
         sdif_regs[7] = (uint16_t)(op->op_id << 8) | 0x20 | uVar3;
     } else if (((uVar4 == 3) || (uVar4 == 2)) || (uVar4 == 1)) {
-        *(uint32_t *)(sdif_regs + 4) = op->sector;
+        v32p(sdif_regs + 4) = op->sector;
         sdif_regs[6] = 0;
         sdif_regs[7] = (uint16_t)(op->op_id << 8) | uVar3;
     }
+    
     while ((op->some_arg1 & 0xc0000000) == 0) {
         if ((sdif_regs[0x18] != 0) || (sdif_regs[0x19] != 0)) {
-            sdif_trans_action((uint32_t) * (volatile uint8_t *)&ctx->dev_id, ctx);
+            sdif_trans_action((uint32_t) v8p(&ctx->dev_id), ctx);
         }
-        delay(1000);
+        delay(3000);
     }
+    
     uVar4 = 0;
     psVar2 = (sdif_arg_s *)(op->some_arg1 & 0x40000000);
     if (psVar2 != (sdif_arg_s *)0x0) {
@@ -305,17 +310,16 @@ static uint32_t write_args(unk_sdif_ctx_init *ctx, sdif_arg_s *op) {
         uVar4 = op->unk_11;
     }
     ctx->sdif_arg = psVar2;
+    
     return uVar4;
 }
 
 static int write_args_retry(unk_sdif_ctx_init *ctx, sdif_arg_s *op, int retry_n) {
     int iret;
-
     do {
         iret = write_args(ctx, op);
-        if (-1 < iret) {
+        if (-1 < iret)
             return iret;
-        }
         retry_n = retry_n + -1;
     } while (0 < retry_n);
     return iret;
@@ -520,18 +524,18 @@ static uint32_t sdif_pingwaitcfg_regs(unk_sdif_ctx_init *param_1, uint32_t param
 
     puVar1 = param_1->sdif_regs_addr;
     if ((param_2 & 1) != 0) {
-        *(uint8_t *)((int)puVar1 + 0x2f) = 1;
+        v8p((int)puVar1 + 0x2f) = 1;
         do {
-        } while ((*(volatile uint8_t *)((int)puVar1 + 0x2f) & 1) != 0);
+        } while ((v8p((int)puVar1 + 0x2f) & 1) != 0);
     }
     if ((param_2 & 2) != 0) {
         puVar1[0x1a] = 0xf3;
         puVar1[0x1b] = 0x17f;
         puVar1[0x1c] = 0xf3;
         puVar1[0x1d] = 0x17f;
-        *(uint8_t *)(puVar1 + 0x17) = 0xe;
+        v8p(puVar1 + 0x17) = 0xe;
         do {
-        } while ((*(volatile uint32_t *)(puVar1 + 0x12) & 0x20000) == 0);
+        } while ((v32p(puVar1 + 0x12) & 0x20000) == 0);
         puVar1[0x18] = puVar1[0x18];
         puVar1[0x19] = puVar1[0x19];
         do {
@@ -609,13 +613,13 @@ static uint32_t sdif_wait_reg16x12(unk_sdif_ctx_init *param_1) {
     puVar1 = param_1->sdif_regs_addr;
     iVar2 = 1000;
     while (true) {
-        if ((*(volatile uint32_t *)(puVar1 + 0x12) & 0x20000) != 0) {
-            return (uint32_t)((*(volatile uint32_t *)(puVar1 + 0x12) & 0x10000) != 0);
+        if ((v32p(puVar1 + 0x12) & 0x20000) != 0) {
+            return (uint32_t)((v32p(puVar1 + 0x12) & 0x10000) != 0);
         }
         if (iVar2 == 0)
             break;
         iVar2 = iVar2 + -1;
-        delay(1000);
+        delay(3000);
     }
     return 0x80320002;
 }
@@ -625,15 +629,15 @@ static uint32_t sdif_cfg_reg16x16(unk_sdif_ctx_init *param_1) {
 
     puVar1 = param_1->sdif_regs_addr;
     do {
-    } while ((*(volatile uint32_t *)(puVar1 + 0x12) & 0x20000) == 0);
-    if ((*(volatile uint32_t *)(puVar1 + 0x12) & 0x10000) != 0) {
-        *(uint8_t *)((int)puVar1 + 0x29) = *(volatile uint8_t *)((int)puVar1 + 0x29) | 0xf;
+    } while ((v32p(puVar1 + 0x12) & 0x20000) == 0);
+    if ((v32p(puVar1 + 0x12) & 0x10000) != 0) {
+        v8p((int)puVar1 + 0x29) = v8p((int)puVar1 + 0x29) | 0xf;
         puVar1[0x16] = 0;
         puVar1[0x16] = 0x8001;
         do {
         } while ((puVar1[0x16] & 2) == 0);
         puVar1[0x16] = puVar1[0x16] | 4;
-        *(uint8_t *)(puVar1 + 0x14) = 0;
+        v8p(puVar1 + 0x14) = 0;
     }
     return 0;
 }
@@ -661,17 +665,17 @@ static uint32_t sdif_work_reg16x16(unk_sdif_ctx_init *param_1, uint32_t param_2,
         if ((puVar1[0x16] & 2) != 0) {
             puVar1[0x16] = puVar1[0x16] | 4;
             if (param_3 == 0) {
-                bVar2 = *(volatile uint8_t *)(puVar1 + 0x14) & 0xfb;
+                bVar2 = v8p(puVar1 + 0x14) & 0xfb;
             } else {
-                bVar2 = *(volatile uint8_t *)(puVar1 + 0x14) | 4;
+                bVar2 = v8p(puVar1 + 0x14) | 4;
             }
-            *(uint8_t *)(puVar1 + 0x14) = bVar2;
+            v8p(puVar1 + 0x14) = bVar2;
             return 0;
         }
         if (iVar3 == 0)
             break;
         iVar3 = iVar3 + -1;
-        delay(1000);
+        delay(3000);
     }
     return 0x80320002;
 }
@@ -679,7 +683,7 @@ static uint32_t sdif_work_reg16x16(unk_sdif_ctx_init *param_1, uint32_t param_2,
 static uint32_t sdif_ack_regx14(unk_sdif_ctx_init *param_1, int param_2) {
     uint8_t bVar1;
 
-    bVar1 = *(volatile uint8_t *)(param_1->sdif_regs_addr + 0x14);
+    bVar1 = v8p(param_1->sdif_regs_addr + 0x14);
     if (param_2 == 8) {
         bVar1 = bVar1 | 0x20;
     } else {
@@ -691,7 +695,7 @@ static uint32_t sdif_ack_regx14(unk_sdif_ctx_init *param_1, int param_2) {
     }
     bVar1 = bVar1 & 0xfd;
 sdif_ack_regx14_x:
-    *(uint8_t *)(param_1->sdif_regs_addr + 0x14) = bVar1;
+    v8p(param_1->sdif_regs_addr + 0x14) = bVar1;
     return 0;
 }
 
@@ -763,7 +767,7 @@ static int sdif_loop_wopx37_opx29_argx42(unk2_sdif_gigactx *gctx, uint32_t param
         }
         if ((param_2 == 0) || ((int)local_44.unk_4 < 0))
             break;
-        delay(10000);
+        delay(30000);
         iVar2 = iVar2 + 1;
         if (99 < iVar2) {
             return -0x7fcdfffe;
@@ -882,14 +886,14 @@ int sdif_init_sd(unk2_sdif_gigactx *gctx) {
     if (gctx->op9_switchd) {  // already ran once, do reset?
         volatile uint16_t *regs = gctx->sctx->sdif_regs_addr;
         regs[0x16] = 0;
-        *(uint8_t *)(regs + 0x14) = 0;
-        *(uint8_t *)((int)regs + 0x29) = 0;
-        delay(10000);
+        v8p(regs + 0x14) = 0;
+        v8p((int)regs + 0x29) = 0;
+        delay(30000);
     }
     iret = sdif_cfg_reg16x16(gctx->sctx);
     if (iret < 0)
         return iret;
-    delay(10000);
+    delay(30000);
     iret = sdif_pingwaitcfg_regs(gctx->sctx, 2);
     if (iret < 0)
         return iret;
@@ -1009,7 +1013,7 @@ static int sdif_op1_argx42(unk2_sdif_gigactx *gctx, uint32_t param_2, uint32_t *
         }
         if ((param_2 == 0) || ((int)op.unk_4 < 0))
             break;
-        delay(10000);
+        delay(30000);
         iVar2 = iVar2 + 1;
         if (99 < iVar2) {
             return -0x7fcdfffe;

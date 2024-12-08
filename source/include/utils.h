@@ -7,9 +7,14 @@
 // atrocious, but i love it
 #define p *(uint32_t*)
 #define vp *(volatile uint32_t*)
+#define v8p *(volatile uint8_t*)
+#define v16p *(volatile uint16_t*)
+#define v32p *(volatile uint32_t*)
+#define v64p *(volatile uint64_t*)
 
 void delay_nx(int n, int x);
 extern void delay(int n);
+#define delay_inline(n) __asm__ __volatile__("1: subs %0, %0, #1; bne 1b" : : "r"(n))
 
 // get compile timestamp
 __attribute__((noinline)) uint32_t get_build_timestamp(void);
