@@ -310,7 +310,6 @@ static uint32_t write_args(unk_sdif_ctx_init *ctx, sdif_arg_s *op) {
         uVar4 = op->unk_11;
     }
     ctx->sdif_arg = psVar2;
-    
     return uVar4;
 }
 

@@ -86,7 +86,7 @@ int stor_init_emmc(bool init_ctrl, bool no_keys) {
     int ret = bob_sendSimpleCmd(BOB_A2B_INIT_STORAGE, !SDIF_DEV_EMMC, init_ctrl, no_keys);
     if (ret < 0)
         return ret;
-    ret = bob_sendSimpleCmd(BOB_A2B_EXPORT_SDIF_CTX, SDIF_DEV_EMMC, (uint32_t)&stor_gctx[SDIF_DEV_EMMC] | (uint32_t)&cfg_phys_load_off, (uint32_t)&stor_sctx[SDIF_DEV_SD] | (uint32_t)&cfg_phys_load_off);
+    ret = bob_sendSimpleCmd(BOB_A2B_EXPORT_SDIF_CTX, SDIF_DEV_EMMC, (uint32_t)&stor_gctx[SDIF_DEV_EMMC] | (uint32_t)&cfg_phys_load_off, (uint32_t)&stor_sctx[SDIF_DEV_EMMC] | (uint32_t)&cfg_phys_load_off);
     if (ret < 0)
         return ret;
     stor_gctx[SDIF_DEV_EMMC].sctx = &stor_sctx[SDIF_DEV_EMMC];
