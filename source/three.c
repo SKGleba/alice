@@ -27,7 +27,8 @@ void three_init(void) {
     g_core_status[3] |= CORE_STATUS_RUNNING;
 }
 
-void three_main(void) {
+int three_main(void) {
     while (1)
         core_task_handler(three_get_task_by_id);
+    return 0;
 }

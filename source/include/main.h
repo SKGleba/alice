@@ -13,7 +13,7 @@ typedef struct _xcfg_s xcfg_s;
 
 extern volatile xcfg_s xcfg;
 
-void init(int cpu_id);
-void main(int cpu_id);
+bool init(int cpu_id);
+bool main(int cpu_id);
 
 #endif

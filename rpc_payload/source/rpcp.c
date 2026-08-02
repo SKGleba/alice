@@ -13,6 +13,8 @@
 #include "../../source/include/paddr.h"
 #include "../../source/include/ernie.h"
 #include "../../source/include/compat.h"
+#include "../../source/include/bob.h"
+#include "../../source/include/rpc.h"
 
 #define TEST_COUNT 1
 
@@ -30,15 +32,19 @@ do_tests:
     printf("[RPCP] test number %X\n", testno);
 
     {
-        g_uart_bus = 0;
-        uart_init(g_uart_bus, UART_BAUD_38400);
-        ret = ernie_exec_cmd_short(0xb2, 1, 1);
-        if (ret < 0)
-            return ret;
-        delay(0x800);
-        compat_loadSK(arg0, arg1);
-        printf("[RPCP] GLSTART \n");
-        while (1) {};
+        bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, false, 0);
+        delay(0x6000);
+        uint32_t* buffer = 0x1f840000;
+        memset(buffer, 0, 0x00200000);
+        uint32_t cur = 0, pre = 0, z = 0;
+        while (vp(0xE0000000) != 2) {
+            cur = vp(0xE0010004);
+            if (cur != pre)
+                buffer[++z] = cur;
+        }
+        delay(0x8000);
+        for (uint32_t a = 0; a < (z + 4); a++)
+            printx(buffer[a]);
     }
 
     if (testno < test_count)

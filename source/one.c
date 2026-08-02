@@ -27,7 +27,8 @@ void one_init(void) {
     g_core_status[1] |= CORE_STATUS_RUNNING;
 }
 
-void one_main(void) {
+int one_main(void) {
     while (1)
         core_task_handler(one_get_task_by_id);
+    return 0;
 }

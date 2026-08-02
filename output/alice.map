@@ -1,0 +1,437 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD source/bob.o
+LOAD source/clib.o
+LOAD source/compat.o
+LOAD source/coring.o
+LOAD source/debug.o
+LOAD source/ernie.o
+LOAD source/ex.o
+LOAD source/glitch.o
+LOAD source/gpio.o
+LOAD source/i2.o
+LOAD source/jig.o
+LOAD source/main.o
+LOAD source/one.o
+LOAD source/perv.o
+LOAD source/rp.o
+LOAD source/sdif.o
+LOAD source/spi.o
+LOAD source/stor.o
+LOAD source/test.o
+LOAD source/three.o
+LOAD source/two.o
+LOAD source/uart.o
+LOAD source/utils.o
+LOAD source/zero.o
+LOAD source/ex.ao
+LOAD source/vector.ao
+LOAD source/export.ao
+LOAD source/xconfig.ao
+LOAD /tmp/cc0CqgRh.o
+
+.cfg            0x0000000000000000        0x0
+                0x0000000000008000                cfg_prog_uses_end = 0x8000
+                0x0000000000008000                cfg_sp_core0_addr = 0x8000
+                0x0000000000007000                cfg_sp_core1_addr = 0x7000
+                0x0000000000006000                cfg_sp_core2_addr = 0x6000
+                0x0000000000005000                cfg_sp_core3_addr = 0x5000
+                0x0000000000004000                cfg_max_prog_size = 0x4000
+                0x0000000000000000                cfg_prog_load_off = 0x0
+                0x000000001f000000                cfg_phys_load_off = 0x1f000000
+                0x0000000000000000                . = cfg_prog_load_off
+
+.text           0x0000000000000000     0x2336
+ *(.text.vectors)
+ .text.vectors  0x0000000000000000       0x50 source/vector.ao
+                0x0000000000000000                vectors_exceptions
+                0x0000000000000020                vectors_handler_addrs
+                0x0000000000000040                info_addrs
+ *(.text*)
+ .text          0x0000000000000050      0x11c source/bob.o
+                0x0000000000000050                bob_getCmdReply
+                0x0000000000000098                bob_sendCmd
+                0x0000000000000118                bob_init
+ .text          0x000000000000016c       0xdc source/clib.o
+                0x000000000000016c                memset8
+                0x000000000000017a                memset32
+                0x0000000000000188                memset
+                0x00000000000001bc                memcpy
+                0x00000000000001ee                memcmp
+                0x0000000000000236                strlen
+ .text          0x0000000000000248       0x90 source/compat.o
+                0x0000000000000248                compat_loadSK
+ .text          0x00000000000002d8       0xe0 source/coring.o
+                0x00000000000002d8                core_task_handler
+                0x0000000000000378                core_schedule_task
+ .text          0x00000000000003b8      0x2f0 source/debug.o
+                0x00000000000003b8                debug_coreID
+                0x00000000000003ec                debug_printU32
+                0x0000000000000450                debug_printFormat
+                0x0000000000000500                debug_printRange
+ .text          0x00000000000006a8      0x198 source/ernie.o
+                0x00000000000006a8                ernie_write
+                0x00000000000006e8                ernie_read
+                0x0000000000000746                ernie_exec
+                0x00000000000007c0                ernie_exec_cmd
+                0x0000000000000828                ernie_exec_cmd_short
+ .text          0x0000000000000840      0x110 source/ex.o
+                0x0000000000000840                c_RESET
+                0x0000000000000888                c_EXC
+ .text          0x0000000000000950       0x7c source/glitch.o
+                0x0000000000000950                glitch_watchdog
+                0x0000000000000988                glitch_loopSKR
+ .text          0x00000000000009cc      0x208 source/gpio.o
+                0x00000000000009cc                gpio_set_port_mode
+                0x00000000000009f8                gpio_port_read
+                0x0000000000000a14                gpio_port_set
+                0x0000000000000a38                gpio_port_clear
+                0x0000000000000a5c                gpio_set_intr_mode
+                0x0000000000000aac                gpio_query_intr
+                0x0000000000000b04                gpio_acquire_intr
+                0x0000000000000b6c                gpio_enable_port
+                0x0000000000000b90                gpio_init
+ .text          0x0000000000000bd4      0x160 source/i2.o
+                0x0000000000000bdc                i2c_init_bus
+                0x0000000000000c3c                i2c_transfer_write
+                0x0000000000000c80                i2c_transfer_read
+                0x0000000000000cc8                i2c_transfer_write_read
+ .text          0x0000000000000d34      0x17c source/jig.o
+                0x0000000000000d34                jig_update_shared_buffer
+                0x0000000000000e00                jig_read_shared_buffer
+ .text          0x0000000000000eb0       0x98 source/main.o
+                0x0000000000000eb0                init
+ .text.startup  0x0000000000000f48       0x68 source/main.o
+                0x0000000000000f48                main
+ .text          0x0000000000000fb0       0x40 source/one.o
+                0x0000000000000fb0                one_nop
+                0x0000000000000fb4                one_get_task_by_id
+                0x0000000000000fc4                one_init
+                0x0000000000000fe0                one_main
+ .text          0x0000000000000ff0       0xc8 source/perv.o
+                0x0000000000000ff0                pervasive_control_reset
+                0x0000000000001030                pervasive_control_gate
+                0x000000000000106e                pervasive_control_clock
+                0x0000000000001094                pervasive_control_misc
+ .text          0x00000000000010b8      0x440 source/rp.o
+                0x00000000000010b8                rpc_loop
+                0x000000000000144c                rpc_loop_bobcompat
+ .text          0x00000000000014f8      0x730 source/sdif.o
+                0x0000000000001a3c                sdif_read_sector_sd
+                0x0000000000001aa6                sdif_write_sector_sd
+                0x0000000000001b10                sdif_read_sector_mmc
+                0x0000000000001b9c                sdif_write_sector_mmc
+ .text          0x0000000000001c28       0xa8 source/spi.o
+                0x0000000000001c28                spi_init
+                0x0000000000001c70                spi_write_start
+                0x0000000000001c88                spi_write_end
+                0x0000000000001c9e                spi_write
+                0x0000000000001ca8                spi_read_available
+                0x0000000000001cb2                spi_read
+                0x0000000000001cbc                spi_read_end
+ .text          0x0000000000001cd0      0x24c source/stor.o
+                0x0000000000001cd0                stor_init_sd
+                0x0000000000001d44                stor_init_emmc
+                0x0000000000001db4                stor_read_sd
+                0x0000000000001df0                stor_write_sd
+                0x0000000000001e2c                stor_read_emmc
+                0x0000000000001e68                stor_write_emmc
+                0x0000000000001ea4                stor_export_ctx
+                0x0000000000001ee0                stor_import_ctx
+ .text          0x0000000000001f1c        0x2 source/test.o
+                0x0000000000001f1c                dfl_test
+ *fill*         0x0000000000001f1e        0x2 
+ .text          0x0000000000001f20       0x40 source/three.o
+                0x0000000000001f20                three_nop
+                0x0000000000001f24                three_get_task_by_id
+                0x0000000000001f34                three_init
+                0x0000000000001f50                three_main
+ .text          0x0000000000001f60       0x40 source/two.o
+                0x0000000000001f60                two_nop
+                0x0000000000001f64                two_get_task_by_id
+                0x0000000000001f74                two_init
+                0x0000000000001f90                two_main
+ .text          0x0000000000001fa0       0xd0 source/uart.o
+                0x0000000000001fa0                uart_init
+                0x0000000000002004                uart_write
+                0x000000000000201e                uart_print
+                0x0000000000002044                uart_printn
+ .text          0x0000000000002070       0xa4 source/utils.o
+                0x0000000000002070                delay_nx
+                0x0000000000002098                get_build_timestamp
+                0x00000000000020a0                stub
+                0x00000000000020a8                get_cpu_id
+                0x00000000000020b2                get_dfsr
+                0x00000000000020c2                get_ifsr
+                0x00000000000020d2                get_adfsr
+                0x00000000000020e2                get_aifsr
+                0x00000000000020f2                get_dfar
+                0x0000000000002102                get_ifar
+ .text          0x0000000000002114       0xb4 source/zero.o
+                0x0000000000002114                zero_nop
+                0x0000000000002118                zero_get_task_by_id
+                0x0000000000002130                zero_enable_rpc
+                0x000000000000217c                zero_init
+                0x0000000000002198                zero_main
+ *fill*         0x00000000000021c8        0x8 
+ .text          0x00000000000021d0        0x0 source/ex.ao
+ .text.exh      0x00000000000021d0      0x140 source/ex.ao
+                0x00000000000021d0                exc_prehandlers
+                0x00000000000021d0                exc_UNDEF
+                0x00000000000021e0                exc_SWI
+                0x00000000000021f0                exc_PABT
+                0x0000000000002200                exc_DABT
+                0x0000000000002210                exc_RESERVED
+                0x0000000000002220                exc_IRQ
+                0x0000000000002230                exc_FIQ
+                0x0000000000002240                exc_RESET
+                0x00000000000022d4                exc_EXC
+ .text          0x0000000000002310        0x0 source/vector.ao
+ .text          0x0000000000002310        0x0 source/export.ao
+ .text.exports  0x0000000000002310       0x20 source/export.ao
+                0x0000000000002310                x_main
+                0x0000000000002310                exports
+                0x0000000000002318                x_init
+                0x0000000000002320                x_debug_printFormat
+                0x0000000000002328                x_core_schedule_task
+ .text          0x0000000000002330        0x0 source/xconfig.ao
+ .text          0x0000000000002330        0x0 /tmp/cc0CqgRh.o
+ .text.util_s   0x0000000000002330        0x6 /tmp/cc0CqgRh.o
+                0x0000000000002330                delay
+
+.glue_7         0x0000000000002338        0x0
+ .glue_7        0x0000000000002338        0x0 linker stubs
+
+.glue_7t        0x0000000000002338        0x0
+ .glue_7t       0x0000000000002338        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000002338        0x0
+ .vfp11_veneer  0x0000000000002338        0x0 linker stubs
+
+.v4_bx          0x0000000000002338        0x0
+ .v4_bx         0x0000000000002338        0x0 linker stubs
+
+.iplt           0x0000000000002338        0x0
+ .iplt          0x0000000000002338        0x0 source/bob.o
+
+.rodata         0x0000000000002338      0x3f1
+ *(.rodata*)
+ .rodata.str1.1
+                0x0000000000002338       0x58 source/compat.o
+ .rodata.str1.1
+                0x0000000000002390       0x30 source/debug.o
+ .rodata        0x00000000000023c0       0x11 source/debug.o
+ *fill*         0x00000000000023d1        0x3 
+ .rodata.str1.1
+                0x00000000000023d4       0xa0 source/ex.o
+ .rodata.str1.1
+                0x0000000000002474       0x26 source/glitch.o
+ *fill*         0x000000000000249a        0x2 
+ .rodata.str1.1
+                0x000000000000249c       0xc1 source/main.o
+ *fill*         0x000000000000255d        0x3 
+ .rodata.str1.1
+                0x0000000000002560        0x7 source/one.o
+ *fill*         0x0000000000002567        0x1 
+ .rodata.str1.1
+                0x0000000000002568       0xdd source/rp.o
+                                         0xef (size before relaxing)
+ *fill*         0x0000000000002645        0x3 
+ .rodata.str1.1
+                0x0000000000002648       0xca source/stor.o
+ .rodata.str1.1
+                0x0000000000002712        0x7 source/three.o
+ .rodata.str1.1
+                0x0000000000002712        0x7 source/two.o
+ *fill*         0x0000000000002712        0x2 
+ .rodata.str1.1
+                0x0000000000002714       0x15 source/zero.o
+                                         0x1c (size before relaxing)
+
+.rel.dyn        0x000000000000272c        0x0
+ .rel.iplt      0x000000000000272c        0x0 source/bob.o
+
+.data           0x000000000000272c       0x5c
+ *(.data*)
+ .data          0x000000000000272c        0x0 source/bob.o
+ .data          0x000000000000272c        0x0 source/clib.o
+ .data          0x000000000000272c        0x0 source/compat.o
+ .data          0x000000000000272c        0x0 source/coring.o
+ .data          0x000000000000272c       0x20 source/debug.o
+                0x000000000000272c                l_debug_core_printf_use_id
+                0x000000000000273c                l_debug_core_printf_id
+ .data          0x000000000000274c        0x0 source/ernie.o
+ .data          0x000000000000274c       0x24 source/ex.o
+                0x000000000000274c                g_bss_NOTcleared
+                0x0000000000002750                exc_types
+ .data          0x0000000000002770        0x0 source/glitch.o
+ .data          0x0000000000002770        0x0 source/gpio.o
+ .data          0x0000000000002770        0x0 source/i2.o
+ .data          0x0000000000002770        0x0 source/jig.o
+ .data          0x0000000000002770        0x0 source/main.o
+ .data          0x0000000000002770        0x0 source/one.o
+ .data          0x0000000000002770        0x0 source/perv.o
+ .data          0x0000000000002770        0x0 source/rp.o
+ .data          0x0000000000002770        0x0 source/sdif.o
+ .data          0x0000000000002770        0x0 source/spi.o
+ .data          0x0000000000002770        0x0 source/stor.o
+ .data          0x0000000000002770        0x0 source/test.o
+ .data          0x0000000000002770        0x0 source/three.o
+ .data          0x0000000000002770        0x0 source/two.o
+ .data          0x0000000000002770        0x0 source/uart.o
+ .data          0x0000000000002770        0x0 source/utils.o
+ .data          0x0000000000002770        0x0 source/zero.o
+ .data          0x0000000000002770        0x0 source/ex.ao
+ .data          0x0000000000002770        0x0 source/vector.ao
+ .data          0x0000000000002770        0x0 source/export.ao
+ .data          0x0000000000002770        0x0 source/xconfig.ao
+ .data.xcfg     0x0000000000002770       0x18 source/xconfig.ao
+                0x0000000000002770                xcfg
+                0x0000000000002770                xcfg_sp_addr_per_core
+                0x0000000000002780                xcfg_uart_bus
+                0x0000000000002784                xcfg_uart_rate
+ .data          0x0000000000002788        0x0 /tmp/cc0CqgRh.o
+                0x0000000000002788                . = ALIGN (0x4)
+
+.igot.plt       0x0000000000002788        0x0
+ .igot.plt      0x0000000000002788        0x0 source/bob.o
+
+.bss            0x0000000000002788      0x284
+                0x0000000000002788                prog_bss_addr = .
+ *(.bss*)
+ .bss           0x0000000000002788      0x140 source/bob.o
+                0x0000000000002788                l_bob_a2b_cmds
+                0x00000000000027c8                x_bob_b2a_ishmem
+ .bss           0x00000000000028c8        0x0 source/clib.o
+ .bss           0x00000000000028c8        0x0 source/compat.o
+ .bss           0x00000000000028c8       0x20 source/coring.o
+                0x00000000000028c8                g_core_tasks
+                0x00000000000028d8                g_core_status
+ .bss           0x00000000000028e8        0x0 source/debug.o
+ .bss           0x00000000000028e8       0x40 source/ernie.o
+                0x00000000000028e8                g_ernie_comms
+ .bss           0x0000000000002928        0x0 source/ex.o
+ .bss           0x0000000000002928        0x4 source/glitch.o
+                0x0000000000002928                l_glitch_success
+ .bss           0x000000000000292c        0x0 source/gpio.o
+ .bss           0x000000000000292c        0x0 source/i2.o
+ .bss           0x000000000000292c        0x0 source/jig.o
+ .bss           0x000000000000292c        0x0 source/main.o
+ .bss           0x000000000000292c        0x0 source/one.o
+ .bss           0x000000000000292c        0x0 source/perv.o
+ .bss           0x000000000000292c       0x48 source/rp.o
+                0x000000000000292c                g_rpc_status
+                0x0000000000002970                l_completed_acquire
+ .bss           0x0000000000002974        0x0 source/sdif.o
+ .bss           0x0000000000002974        0x0 source/spi.o
+ .bss           0x0000000000002974       0x78 source/stor.o
+ .bss           0x00000000000029ec        0x0 source/test.o
+ .bss           0x00000000000029ec        0x0 source/three.o
+ .bss           0x00000000000029ec        0x0 source/two.o
+ .bss           0x00000000000029ec        0x0 source/uart.o
+ .bss           0x00000000000029ec        0x0 source/utils.o
+ .bss           0x00000000000029ec       0x20 source/zero.o
+ .bss           0x0000000000002a0c        0x0 source/ex.ao
+ .bss           0x0000000000002a0c        0x0 source/vector.ao
+ .bss           0x0000000000002a0c        0x0 source/export.ao
+ .bss           0x0000000000002a0c        0x0 source/xconfig.ao
+ .bss           0x0000000000002a0c        0x0 /tmp/cc0CqgRh.o
+ *(COMMON)
+                0x0000000000002a0c                . = ALIGN (0x4)
+                0x0000000000002a0c                prog_bss_end = .
+OUTPUT(alice.elf elf32-littlearm)
+LOAD linker stubs
+
+.comment        0x0000000000000000       0x34
+ .comment       0x0000000000000000       0x34 source/bob.o
+                                         0x35 (size before relaxing)
+ .comment       0x0000000000000034       0x35 source/clib.o
+ .comment       0x0000000000000034       0x35 source/compat.o
+ .comment       0x0000000000000034       0x35 source/coring.o
+ .comment       0x0000000000000034       0x35 source/debug.o
+ .comment       0x0000000000000034       0x35 source/ernie.o
+ .comment       0x0000000000000034       0x35 source/ex.o
+ .comment       0x0000000000000034       0x35 source/glitch.o
+ .comment       0x0000000000000034       0x35 source/gpio.o
+ .comment       0x0000000000000034       0x35 source/i2.o
+ .comment       0x0000000000000034       0x35 source/jig.o
+ .comment       0x0000000000000034       0x35 source/main.o
+ .comment       0x0000000000000034       0x35 source/one.o
+ .comment       0x0000000000000034       0x35 source/perv.o
+ .comment       0x0000000000000034       0x35 source/rp.o
+ .comment       0x0000000000000034       0x35 source/sdif.o
+ .comment       0x0000000000000034       0x35 source/spi.o
+ .comment       0x0000000000000034       0x35 source/stor.o
+ .comment       0x0000000000000034       0x35 source/test.o
+ .comment       0x0000000000000034       0x35 source/three.o
+ .comment       0x0000000000000034       0x35 source/two.o
+ .comment       0x0000000000000034       0x35 source/uart.o
+ .comment       0x0000000000000034       0x35 source/utils.o
+ .comment       0x0000000000000034       0x35 source/zero.o
+
+.ARM.attributes
+                0x0000000000000000       0x35
+ .ARM.attributes
+                0x0000000000000000       0x37 source/bob.o
+ .ARM.attributes
+                0x0000000000000037       0x37 source/clib.o
+ .ARM.attributes
+                0x000000000000006e       0x37 source/compat.o
+ .ARM.attributes
+                0x00000000000000a5       0x37 source/coring.o
+ .ARM.attributes
+                0x00000000000000dc       0x37 source/debug.o
+ .ARM.attributes
+                0x0000000000000113       0x37 source/ernie.o
+ .ARM.attributes
+                0x000000000000014a       0x37 source/ex.o
+ .ARM.attributes
+                0x0000000000000181       0x37 source/glitch.o
+ .ARM.attributes
+                0x00000000000001b8       0x37 source/gpio.o
+ .ARM.attributes
+                0x00000000000001ef       0x37 source/i2.o
+ .ARM.attributes
+                0x0000000000000226       0x37 source/jig.o
+ .ARM.attributes
+                0x000000000000025d       0x37 source/main.o
+ .ARM.attributes
+                0x0000000000000294       0x37 source/one.o
+ .ARM.attributes
+                0x00000000000002cb       0x37 source/perv.o
+ .ARM.attributes
+                0x0000000000000302       0x37 source/rp.o
+ .ARM.attributes
+                0x0000000000000339       0x37 source/sdif.o
+ .ARM.attributes
+                0x0000000000000370       0x37 source/spi.o
+ .ARM.attributes
+                0x00000000000003a7       0x37 source/stor.o
+ .ARM.attributes
+                0x00000000000003de       0x37 source/test.o
+ .ARM.attributes
+                0x0000000000000415       0x37 source/three.o
+ .ARM.attributes
+                0x000000000000044c       0x37 source/two.o
+ .ARM.attributes
+                0x0000000000000483       0x37 source/uart.o
+ .ARM.attributes
+                0x00000000000004ba       0x37 source/utils.o
+ .ARM.attributes
+                0x00000000000004f1       0x37 source/zero.o
+ .ARM.attributes
+                0x0000000000000528       0x2b source/ex.ao
+ .ARM.attributes
+                0x0000000000000553       0x2b source/vector.ao
+ .ARM.attributes
+                0x000000000000057e       0x2b source/export.ao
+ .ARM.attributes
+                0x00000000000005a9       0x2b source/xconfig.ao
+ .ARM.attributes
+                0x00000000000005d4       0x2b /tmp/cc0CqgRh.o

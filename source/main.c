@@ -19,7 +19,7 @@
 
 // init each core's workers
 // TODO: properly handle multiple cores initwait when i get smart enough
-void init(int cpu_id) {
+bool init(int cpu_id) {
     switch (cpu_id) {
     case 0:
 #ifndef SILENT
@@ -61,25 +61,37 @@ void init(int cpu_id) {
 
     while (!(g_core_status[3] & CORE_STATUS_RUNNING))
         ;
+    
+    return true;
 }
 
-void main(int cpu_id) {
+bool main(int cpu_id) {
+    int ret = -1;
     while (1) {
         switch (cpu_id) {
         case 0:
-            zero_main();
+            ret = zero_main();
             break;
         case 1:
-            one_main();
+            ret = one_main();
             break;
         case 2:
-            two_main();
+            ret = two_main();
             break;
         case 3:
-            three_main();
+            ret = three_main();
             break;
         default:
             break;
         }
+        if (ret < 0)
+            break;
+        printf("[WARN] core %X main loop exited with code %X, restarting...\n", cpu_id, ret);
     }
+    if (ret & 1) {
+        printf("[WARN] core %X main loop exited with code %X, exiting...\n", cpu_id, ret);
+        return false;
+    }
+    printf("[WARN] core %X finished main loop, sleeping...\n", cpu_id);
+    return true;
 }

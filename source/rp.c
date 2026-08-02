@@ -100,7 +100,7 @@ void rpc_loop(void) {
             cret = (uint32_t)memset32((void*)rpc_buf.cmd.args[0], rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
             break;
         case RPC_CMD_LOAD_SK:
-            cret = compat_loadSK(rpc_buf.cmd.args[0], rpc_buf.cmd.args[1]);
+            cret = compat_loadSK(rpc_buf.cmd.args[0], rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
             break;
         case RPC_CMD_ENABLE_GLITCH_WATCHDOG:
             l_rpc_glitch_watchdog_task.args[0] = rpc_buf.cmd.args[1];
@@ -193,8 +193,6 @@ void rpc_loop(void) {
 
 void rpc_loop_bobcompat(bool exclusive) {
     if (!l_completed_acquire) {
-        printf("acquiring bob arm interface..\n");
-        bob_sendSimpleCmd(BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD, BOB_ACQUIRE_ARM_CMD);
         if (exclusive) {
             printf("acquiring jig rpc..\n");
             bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, true, 0);
@@ -214,8 +212,6 @@ void rpc_loop_bobcompat(bool exclusive) {
         bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, false, 0);
         delay_nx(0x6000, 200);
     }
-    printf("relinquishing bob arm interface\n");
-    bob_sendSimpleCmd(BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD, BOB_RELINQUISH_ARM_CMD);
 
     l_completed_acquire = false;
 }

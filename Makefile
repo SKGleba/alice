@@ -8,7 +8,7 @@ PREFIX	= arm-vita-eabi
 CC	= $(PREFIX)-gcc
 OBJCOPY	= $(PREFIX)-objcopy
 CFLAGS	= -mcpu=cortex-a9 -mthumb-interwork -mno-unaligned-access -Os -Wall -Wno-unused-const-variable -ffreestanding -std=gnu2x -I$(PSP2REF_DIR)
-LDFLAGS	= -T linker.x -nostartfiles -nostdlib
+LDFLAGS	= -T linker.x -nostartfiles -nostdlib -Wl,-Map=alice.map
 ASFLAGS	=
 
 # size limits, (re)configurable in cfg.x
@@ -35,6 +35,7 @@ output/alice.bin: alice.bin
 	@echo " | alice -> output"
 	@mv alice.elf output/alice.elf
 	@mv alice.bin output/alice.bin
+	@mv alice.map output/alice.map
 	@echo " | ensure alice fits (ALICE_MAX_SIZE: $(ALICE_MAX_SIZE))"
 	@if [ $$(stat -c %s output/alice.bin) -gt $(ALICE_MAX_SIZE) ]; then echo "\033[0;31m\nERROR: alice.bin is too large\033[0m"; exit 1; fi
 	@echo "  \-> \033[0;32mall done\n\033[0m"

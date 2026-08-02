@@ -10,6 +10,7 @@
 #ifndef SILENT
 #define UART_BUS 1 // default uart bus to print to
 #define UART_FIND_BUS // if defined, will use the first enabled uart bus
+//#define EXCPRINT_ZERO // only core 0 is allowed to print exceptions
 #endif
 
 #define RPC_READ_DELAY 0x2000 // delay between RPC checks

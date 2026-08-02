@@ -8,7 +8,7 @@ enum ZERO_TASKS {
     ZERO_TASKS_ENABLE_RPC = 1
 };
 
-void zero_main(void);
+int zero_main(void);
 void zero_init(void);
 void* zero_get_task_by_id(int task_id);
 int zero_nop(int a, int b, int c, int d);

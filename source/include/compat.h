@@ -8,6 +8,6 @@ typedef struct compat_paddr_list {
     uint32_t size;
 } compat_paddr_list;
 
-int compat_loadSK(uint32_t addr, bool second);
+int compat_loadSK(uint32_t addr, bool second, bool mark);
 
 #endif

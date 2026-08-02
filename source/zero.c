@@ -10,6 +10,7 @@
 #include "include/rpc.h"
 #include "include/bob.h"
 #include "include/ex.h"
+#include "include/test.h"
 
 #include "include/zero.h"
 
@@ -52,19 +53,14 @@ void zero_init(void) {
     g_core_status[0] |= CORE_STATUS_RUNNING;
 }
 
-void test(void);
-
-void zero_main(void) {
-    test();
+int zero_main(void) {
+    int ret = bob_init();
+    if (ret < 0) {
+        printf("bob_init failed: %d\n", ret);
+        return ret;
+    }
+    dfl_test(0);
     while (1)
         core_task_handler(zero_get_task_by_id);
-}
-
-void test(void) {
-    printf("test test test\n");
-    {
-        zero_enable_rpc(true, 0, false);
-    }
-
-    printf("all tests done\n");
+    return 0;
 }

@@ -30,7 +30,7 @@ void glitch_watchdog(uint32_t addr) {
 void glitch_loopSKR(uint32_t sk_addr, bool second) {
     while (!l_glitch_success) {
         print("GLSTART\n");
-        compat_loadSK(sk_addr, second);
+        compat_loadSK(sk_addr, second, true);
         print("GLSTOP\n");
     }
 }

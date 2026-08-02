@@ -27,7 +27,8 @@ void two_init(void) {
     g_core_status[2] |= CORE_STATUS_RUNNING;
 }
 
-void two_main(void) {
+int two_main(void) {
     while (1)
         core_task_handler(two_get_task_by_id);
+    return 0;
 }

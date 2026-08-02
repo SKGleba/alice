@@ -16,23 +16,25 @@
 
 const char* exc_types[] = { "UNDEF", "SWI", "PABT", "DABT", "PABT", "RESERVED", "IRQ", "FIQ" };
 
-volatile bool g_bss_cleared = false;
+volatile bool g_bss_NOTcleared = true;
 
 void c_RESET(int cpu_id) {
 
-    if (cpu_id == 0 && !g_bss_cleared) {
+    if (cpu_id == 0 && g_bss_NOTcleared) {
         for (uint32_t i = (uint32_t)&prog_bss_addr; i < (uint32_t)&prog_bss_end; i -= -4)
             vp i = 0;
-        g_bss_cleared = true;
+        g_bss_NOTcleared = false;
     }
 
-    while (!g_bss_cleared)
+    while (g_bss_NOTcleared)
         ;
 
-    init(cpu_id);
-
+    if (init(cpu_id)) {
+        while (main(cpu_id)) {
+            wfe();
+        }
+    }
     while (1) {
-        main(cpu_id);
         wfe();
     }
 }
@@ -40,6 +42,9 @@ void c_RESET(int cpu_id) {
 // temp
 void c_EXC(int cpu_id, uint32_t exc_pc, uint32_t phlr) {
     int exc_id = (phlr - (uint32_t)&exc_prehandlers) >> 4;
+#ifdef EXCPRINT_ZERO
+    if (!cpu_id) {
+#endif
     printf("|------>  !EXCEPTION!  <------|\n");
     printf(" pc %X\n", exc_pc);
     printf(" phlr %X\n", phlr);
@@ -51,6 +56,9 @@ void c_EXC(int cpu_id, uint32_t exc_pc, uint32_t phlr) {
     printf(" dfar %X\n", get_dfar(true));
     printf(" ifar %X\n", get_ifar(true) - 4); // is this right?, bing ai says so and i cant bring myself to pabt at 4AM..
     printf("|------>  !EXCEPTION!  <------|\n");
+#ifdef EXCPRINT_ZERO
+    }
+#endif
     
     while (1) {
         main(cpu_id);

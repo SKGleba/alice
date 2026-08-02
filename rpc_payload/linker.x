@@ -4,7 +4,7 @@ OUTPUT_ARCH(arm)
 SECTIONS
 {
 	INCLUDE ../output/alice_linker.x
-	. = 0x40000000;
+	. = 0x00003000;
 	.text   : { *(.text.rpcp) *(.text   .text.*   .gnu.linkonce.t.*) }
   	.rodata : { *(.rodata .rodata.* .gnu.linkonce.r.*) }
   	.data   : { *(.data   .data.*   .gnu.linkonce.d.*) }
