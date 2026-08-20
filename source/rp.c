@@ -137,6 +137,10 @@ void rpc_loop(void) {
         case RPC_CMD_WRITE_EMMC:
             cret = stor_write_emmc(rpc_buf.cmd.args[0], (void *)rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
             break;
+        // TODO: add import/export sdif ctx cmds
+        case RPC_CMD_BOB_MGR_INTR:
+            cret = bob_sendSimpleCmd(BOB_A2B_MGR_INTR, rpc_buf.cmd.args[0], rpc_buf.cmd.args[1], rpc_buf.cmd.args[2]);
+            break;
 
         case RPC_CMD_COPYTO:
             cret = (uint32_t)memcpy((void*)rpc_buf.cmd.args[0], rpc_buf.extra_data, rpc_buf.cmd.args[1]);
@@ -193,7 +197,7 @@ void rpc_loop(void) {
 
 void rpc_loop_bobcompat(bool exclusive) {
     if (!l_completed_acquire) {
-        if (exclusive) {
+        if (exclusive && bob_sendSimpleCmd(BOB_A2B_GET_RPC_STATUS, 0, 0, 0)) {
             printf("acquiring jig rpc..\n");
             bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, true, 0);
             do {
@@ -207,7 +211,7 @@ void rpc_loop_bobcompat(bool exclusive) {
 
     rpc_loop();
 
-    if (exclusive) {
+    if (exclusive && bob_sendSimpleCmd(BOB_A2B_GET_RPC_STATUS, 0, 0, 0)) {
         printf("rpc loop exited, giving jig rpc back to bob\n");
         bob_sendSimpleCmd(BOB_A2B_MASK_RPC_STATUS, RPC_STATUS_REQUEST_BLOCK, false, 0);
         delay_nx(0x6000, 200);

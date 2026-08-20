@@ -38,6 +38,7 @@ enum RPC_COMMANDS {
     RPC_CMD_WRITE_EMMC,
     RPC_CMD_IMPORT_SDIF_CTX,
     RPC_CMD_EXPORT_SDIF_CTX,
+    RPC_CMD_BOB_MGR_INTR,
     RPC_CMD_COPYTO = RPC_FLAG_EXTRA,
     RPC_CMD_COPYFROM,
     RPC_CMD_EXEC,          // exec arg0(arg1, arg2, &extra) | ret to arg0

@@ -19,3 +19,4 @@ xcfg:
 ADD_XCFG_ENTRY sp_addr_per_core cfg_sp_core0_addr,cfg_sp_core1_addr,cfg_sp_core2_addr,cfg_sp_core3_addr
 ADD_XCFG_ENTRY uart_bus 0xFFFFFFFF
 ADD_XCFG_ENTRY uart_rate 0xFFFFFFFF
+ADD_XCFG_ENTRY sp_size_per_core cfg_sp_pcore_size,cfg_sp_pcore_size,cfg_sp_pcore_size,cfg_sp_pcore_size

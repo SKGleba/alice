@@ -3,6 +3,7 @@ OUTPUT_ARCH(arm)
 
 SECTIONS
 {
+	INCLUDE psp2ref/misc/map.x /* adress space map */
 	INCLUDE cfg.x /* configuration data */
 
 	. = cfg_prog_load_off;
@@ -26,4 +27,8 @@ SECTIONS
 		. = ALIGN(4);
 		prog_bss_end = .;
 	}
+
+	prog_act_size = (. - cfg_prog_load_off);
 }
+
+ASSERT(!(prog_act_size > cfg_max_prog_size), "cfg_max_prog_size");

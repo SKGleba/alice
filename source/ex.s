@@ -9,6 +9,7 @@
 .global exc_prehandlers
 .global exc_RESET
 .global exc_EXC
+.global exc_IRQ
 
 
 .macro PREHANDLE type

@@ -1,5 +1,4 @@
-import sys
-import time
+import sys, time
 import bert
 
 RPC_MAGIC = 0xA21C
@@ -28,6 +27,9 @@ RPC_COMMANDS = {
     "write_sd" : 0x11,
     "read_emmc" : 0x12,
     "write_emmc" : 0x13,
+    "import_sdif_ctx" : 0x14,
+    "export_sdif_ctx" : 0x15,
+    "bob_mgr_intr" : 0x16,
     "copyto" : 0x40,
     "copyfrom" : 0x41,
     "exec" : 0x42, # exec arg0(arg1, arg2, &extra) | ret to arg0

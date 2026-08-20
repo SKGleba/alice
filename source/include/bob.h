@@ -33,6 +33,7 @@ enum ALICE2BOB_COMMANDS {
     BOB_A2B_EXPORT_SDIF_CTX,
     BOB_A2B_IMPORT_SDIF_CTX,
     BOB_A2B_SET_B2A_SHBUF,
+    BOB_A2B_MGR_INTR,
     
     BOB_A2B__MAX,
     BOB_A2B_EXEC = 0x80000000 // OR it with paddr for bob to exec

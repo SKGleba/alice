@@ -8,5 +8,8 @@
 #include "include/test.h"
 
 void dfl_test(int cpu_id) {
+    if (cpu_id < 0)
+        return;
+    zero_enable_rpc(false, 0, false);
     return;
 }

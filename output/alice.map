@@ -34,20 +34,393 @@ LOAD source/ex.ao
 LOAD source/vector.ao
 LOAD source/export.ao
 LOAD source/xconfig.ao
-LOAD /tmp/cc0CqgRh.o
+LOAD /tmp/ccaeuwQ1.o
+
+.as             0x0000000000000000        0x0
+                0x0000000000000000                _as_ARM_BOOT = 0x0
+                0x0000000000008000                _as_ARM_BOOT_size = 0x8000
+                0x0000000000008000                _as_ARM_BOOT_end = 0x8000
+                0x0000000000040000                _as_F00D_SRAM = 0x40000
+                0x0000000000020000                _as_F00D_SRAM_size = 0x20000
+                0x0000000000060000                _as_F00D_SRAM_end = 0x60000
+                0x0000000000300000                _as_F00D_ICACHE = 0x300000
+                0x0000000000010000                _as_F00D_ICACHE_size = 0x10000
+                0x0000000000310000                _as_F00D_ICACHE_end = 0x310000
+                0x0000000000310000                _as_F00D_ICACHE_TAG = 0x310000
+                0x0000000000010000                _as_F00D_ICACHE_TAG_size = 0x10000
+                0x0000000000320000                _as_F00D_ICACHE_TAG_end = 0x320000
+                0x0000000000320000                _as_F00D_DCACHE = 0x320000
+                0x0000000000010000                _as_F00D_DCACHE_size = 0x10000
+                0x0000000000330000                _as_F00D_DCACHE_end = 0x330000
+                0x0000000000330000                _as_F00D_DCACHE_TAG = 0x330000
+                0x0000000000010000                _as_F00D_DCACHE_TAG_size = 0x10000
+                0x0000000000340000                _as_F00D_DCACHE_TAG_end = 0x340000
+                0x0000000000800000                _as_F00D_CACHED_SRAM = 0x800000
+                0x0000000000020000                _as_F00D_CACHED_SRAM_size = 0x20000
+                0x0000000000820000                _as_F00D_CACHED_SRAM_end = 0x820000
+                0x000000001a000000                _as_ARM_CTRL = 0x1a000000
+                0x0000000000003000                _as_ARM_CTRL_size = 0x3000
+                0x000000001a003000                _as_ARM_CTRL_end = 0x1a003000
+                0x000000001c000000                _as_TACHYON_EDRAM = 0x1c000000
+                0x0000000000200000                _as_TACHYON_EDRAM_size = 0x200000
+                0x000000001c200000                _as_TACHYON_EDRAM_end = 0x1c200000
+                0x000000001d000000                _as_DEVNULL = 0x1d000000
+                0x0000000000001000                _as_DEVNULL_size = 0x1000
+                0x000000001d001000                _as_DEVNULL_end = 0x1d001000
+                0x000000001d001000                _as_EDEVNULL = 0x1d001000
+                0x0000000000001000                _as_EDEVNULL_size = 0x1000
+                0x000000001d002000                _as_EDEVNULL_end = 0x1d002000
+                0x000000001f000000                _as_SPAD32K = 0x1f000000
+                0x0000000000008000                _as_SPAD32K_size = 0x8000
+                0x000000001f008000                _as_SPAD32K_end = 0x1f008000
+                0x000000001f840000                _as_SPAD128K = 0x1f840000
+                0x0000000000020000                _as_SPAD128K_size = 0x20000
+                0x000000001f860000                _as_SPAD128K_end = 0x1f860000
+                0x0000000020000000                _as_VRAM = 0x20000000
+                0x0000000008000000                _as_VRAM_size = 0x8000000
+                0x0000000028000000                _as_VRAM_end = 0x28000000
+                0x0000000040000000                _as_MAIN_DRAM = 0x40000000
+                0x0000000040000000                _as_MAIN_DRAM_size = 0x40000000
+                0x0000000080000000                _as_MAIN_DRAM_end = 0x80000000
+                0x0000000080000000                _as_SUB_DRAM = 0x80000000
+                0x0000000040000000                _as_SUB_DRAM_size = 0x40000000
+                0x00000000c0000000                _as_SUB_DRAM_end = 0xc0000000
+                0x00000000e0000000                _as_MAIKA = 0xe0000000
+                0x0000000000100000                _as_MAIKA_size = 0x100000
+                0x00000000e0100000                _as_MAIKA_end = 0xe0100000
+                0x00000000e0100000                _as_GPIO1 = 0xe0100000
+                0x0000000000010000                _as_GPIO1_size = 0x10000
+                0x00000000e0110000                _as_GPIO1_end = 0xe0110000
+                0x00000000e0400000                _as_DMAC4 = 0xe0400000
+                0x0000000000010000                _as_DMAC4_size = 0x10000
+                0x00000000e0410000                _as_DMAC4_end = 0xe0410000
+                0x00000000e0410000                _as_DMAC5 = 0xe0410000
+                0x0000000000010000                _as_DMAC5_size = 0x10000
+                0x00000000e0420000                _as_DMAC5_end = 0xe0420000
+                0x00000000e0420000                _as_I2S0 = 0xe0420000
+                0x0000000000010000                _as_I2S0_size = 0x10000
+                0x00000000e0430000                _as_I2S0_end = 0xe0430000
+                0x00000000e0430000                _as_I2S1 = 0xe0430000
+                0x0000000000010000                _as_I2S1_size = 0x10000
+                0x00000000e0440000                _as_I2S1_end = 0xe0440000
+                0x00000000e0440000                _as_I2S2 = 0xe0440000
+                0x0000000000010000                _as_I2S2_size = 0x10000
+                0x00000000e0450000                _as_I2S2_end = 0xe0450000
+                0x00000000e0450000                _as_I2S3 = 0xe0450000
+                0x0000000000010000                _as_I2S3_size = 0x10000
+                0x00000000e0460000                _as_I2S3_end = 0xe0460000
+                0x00000000e0460000                _as_I2S5 = 0xe0460000
+                0x0000000000010000                _as_I2S5_size = 0x10000
+                0x00000000e0470000                _as_I2S5_end = 0xe0470000
+                0x00000000e0470000                _as_I2S4 = 0xe0470000
+                0x0000000000010000                _as_I2S4_size = 0x10000
+                0x00000000e0480000                _as_I2S4_end = 0xe0480000
+                0x00000000e0480000                _as_I2S6 = 0xe0480000
+                0x0000000000010000                _as_I2S6_size = 0x10000
+                0x00000000e0490000                _as_I2S6_end = 0xe0490000
+                0x00000000e0490000                _as_I2S7 = 0xe0490000
+                0x0000000000010000                _as_I2S7_size = 0x10000
+                0x00000000e04a0000                _as_I2S7_end = 0xe04a0000
+                0x00000000e04a0000                _as_SRC0 = 0xe04a0000
+                0x0000000000010000                _as_SRC0_size = 0x10000
+                0x00000000e04b0000                _as_SRC0_end = 0xe04b0000
+                0x00000000e04b0000                _as_SRC1 = 0xe04b0000
+                0x0000000000010000                _as_SRC1_size = 0x10000
+                0x00000000e04c0000                _as_SRC1_end = 0xe04c0000
+                0x00000000e04c0000                _as_SRC2 = 0xe04c0000
+                0x0000000000010000                _as_SRC2_size = 0x10000
+                0x00000000e04d0000                _as_SRC2_end = 0xe04d0000
+                0x00000000e04d0000                _as_SPDIF = 0xe04d0000
+                0x000000000000c000                _as_SPDIF_size = 0xc000
+                0x00000000e04dc000                _as_SPDIF_end = 0xe04dc000
+                0x00000000e04dc000                _as_ACLKGEN = 0xe04dc000
+                0x0000000000004000                _as_ACLKGEN_size = 0x4000
+                0x00000000e04e0000                _as_ACLKGEN_end = 0xe04e0000
+                0x00000000e04e0000                _as_DMAC5_KEYRING = 0xe04e0000
+                0x0000000000010000                _as_DMAC5_KEYRING_size = 0x10000
+                0x00000000e04f0000                _as_DMAC5_KEYRING_end = 0xe04f0000
+                0x00000000e0500000                _as_I2C0 = 0xe0500000
+                0x0000000000010000                _as_I2C0_size = 0x10000
+                0x00000000e0510000                _as_I2C0_end = 0xe0510000
+                0x00000000e0510000                _as_I2C1 = 0xe0510000
+                0x0000000000010000                _as_I2C1_size = 0x10000
+                0x00000000e0520000                _as_I2C1_end = 0xe0520000
+                0x00000000e0800000                _as_SUBLCD = 0xe0800000
+                0x0000000000010000                _as_SUBLCD_size = 0x10000
+                0x00000000e0810000                _as_SUBLCD_end = 0xe0810000
+                0x00000000e0900000                _as_SMSHC = 0xe0900000
+                0x0000000000010000                _as_SMSHC_size = 0x10000
+                0x00000000e0910000                _as_SMSHC_end = 0xe0910000
+                0x00000000e0a00000                _as_SPI0 = 0xe0a00000
+                0x0000000000010000                _as_SPI0_size = 0x10000
+                0x00000000e0a10000                _as_SPI0_end = 0xe0a10000
+                0x00000000e0a10000                _as_SPI1 = 0xe0a10000
+                0x0000000000010000                _as_SPI1_size = 0x10000
+                0x00000000e0a20000                _as_SPI1_end = 0xe0a20000
+                0x00000000e0a20000                _as_SPI2 = 0xe0a20000
+                0x0000000000010000                _as_SPI2_size = 0x10000
+                0x00000000e0a30000                _as_SPI2_end = 0xe0a30000
+                0x00000000e0b00000                _as_SDIF0 = 0xe0b00000
+                0x0000000000010000                _as_SDIF0_size = 0x10000
+                0x00000000e0b10000                _as_SDIF0_end = 0xe0b10000
+                0x00000000e0c00000                _as_SDIF1 = 0xe0c00000
+                0x0000000000010000                _as_SDIF1_size = 0x10000
+                0x00000000e0c10000                _as_SDIF1_end = 0xe0c10000
+                0x00000000e0c10000                _as_SDIF2 = 0xe0c10000
+                0x0000000000010000                _as_SDIF2_size = 0x10000
+                0x00000000e0c20000                _as_SDIF2_end = 0xe0c20000
+                0x00000000e0c20000                _as_SDIF3 = 0xe0c20000
+                0x0000000000010000                _as_SDIF3_size = 0x10000
+                0x00000000e0c30000                _as_SDIF3_end = 0xe0c30000
+                0x00000000e2030000                _as_UART0 = 0xe2030000
+                0x0000000000010000                _as_UART0_size = 0x10000
+                0x00000000e2040000                _as_UART0_end = 0xe2040000
+                0x00000000e2040000                _as_UART1 = 0xe2040000
+                0x0000000000010000                _as_UART1_size = 0x10000
+                0x00000000e2050000                _as_UART1_end = 0xe2050000
+                0x00000000e2050000                _as_UART2 = 0xe2050000
+                0x0000000000010000                _as_UART2_size = 0x10000
+                0x00000000e2060000                _as_UART2_end = 0xe2060000
+                0x00000000e2060000                _as_UART3 = 0xe2060000
+                0x0000000000010000                _as_UART3_size = 0x10000
+                0x00000000e2070000                _as_UART3_end = 0xe2070000
+                0x00000000e2070000                _as_UART4 = 0xe2070000
+                0x0000000000010000                _as_UART4_size = 0x10000
+                0x00000000e2080000                _as_UART4_end = 0xe2080000
+                0x00000000e2080000                _as_UART5 = 0xe2080000
+                0x0000000000010000                _as_UART5_size = 0x10000
+                0x00000000e2090000                _as_UART5_end = 0xe2090000
+                0x00000000e2090000                _as_UART6 = 0xe2090000
+                0x0000000000010000                _as_UART6_size = 0x10000
+                0x00000000e20a0000                _as_UART6_end = 0xe20a0000
+                0x00000000e20a0000                _as_GPIO0 = 0xe20a0000
+                0x0000000000010000                _as_GPIO0_size = 0x10000
+                0x00000000e20b0000                _as_GPIO0_end = 0xe20b0000
+                0x00000000e20b0000                _as_TIMERS = 0xe20b0000
+                0x0000000000010000                _as_TIMERS_size = 0x10000
+                0x00000000e20c0000                _as_TIMERS_end = 0xe20c0000
+                0x00000000e20c0000                _as_PWM = 0xe20c0000
+                0x0000000000010000                _as_PWM_size = 0x10000
+                0x00000000e20d0000                _as_PWM_end = 0xe20d0000
+                0x00000000e3000000                _as_DMAC0 = 0xe3000000
+                0x0000000000010000                _as_DMAC0_size = 0x10000
+                0x00000000e3010000                _as_DMAC0_end = 0xe3010000
+                0x00000000e3010000                _as_DMAC1 = 0xe3010000
+                0x0000000000010000                _as_DMAC1_size = 0x10000
+                0x00000000e3020000                _as_DMAC1_end = 0xe3020000
+                0x00000000e3020000                _as_CIF0 = 0xe3020000
+                0x0000000000010000                _as_CIF0_size = 0x10000
+                0x00000000e3030000                _as_CIF0_end = 0xe3030000
+                0x00000000e3030000                _as_CIF1 = 0xe3030000
+                0x0000000000010000                _as_CIF1_size = 0x10000
+                0x00000000e3040000                _as_CIF1_end = 0xe3040000
+                0x00000000e3040000                _as_CIF2 = 0xe3040000
+                0x0000000000010000                _as_CIF2_size = 0x10000
+                0x00000000e3050000                _as_CIF2_end = 0xe3050000
+                0x00000000e3050000                _as_CSI0 = 0xe3050000
+                0x0000000000010000                _as_CSI0_size = 0x10000
+                0x00000000e3060000                _as_CSI0_end = 0xe3060000
+                0x00000000e3060000                _as_CSI1 = 0xe3060000
+                0x0000000000010000                _as_CSI1_size = 0x10000
+                0x00000000e3070000                _as_CSI1_end = 0xe3070000
+                0x00000000e3070000                _as_CSI2 = 0xe3070000
+                0x0000000000010000                _as_CSI2_size = 0x10000
+                0x00000000e3080000                _as_CSI2_end = 0xe3080000
+                0x00000000e3100000                _as_PERVASIVE = 0xe3100000
+                0x0000000000010000                _as_PERVASIVE_size = 0x10000
+                0x00000000e3110000                _as_PERVASIVE_end = 0xe3110000
+                0x00000000e3110000                _as_PERVASIVE2 = 0xe3110000
+                0x0000000000010000                _as_PERVASIVE2_size = 0x10000
+                0x00000000e3120000                _as_PERVASIVE2_end = 0xe3120000
+                0x00000000e3200000                _as_ARM_DEBUG = 0xe3200000
+                0x0000000000120000                _as_ARM_DEBUG_size = 0x120000
+                0x00000000e3320000                _as_ARM_DEBUG_end = 0xe3320000
+                0x00000000e3320000                _as_ARM_VFP = 0xe3320000
+                0x0000000000010000                _as_ARM_VFP_size = 0x10000
+                0x00000000e3330000                _as_ARM_VFP_end = 0xe3330000
+                0x00000000e4000000                _as_USB0O = 0xe4000000
+                0x0000000000010000                _as_USB0O_size = 0x10000
+                0x00000000e4010000                _as_USB0O_end = 0xe4010000
+                0x00000000e4010000                _as_USB0_OHCI = 0xe4010000
+                0x0000000000010000                _as_USB0_OHCI_size = 0x10000
+                0x00000000e4020000                _as_USB0_OHCI_end = 0xe4020000
+                0x00000000e4020000                _as_USB2_OHCI = 0xe4020000
+                0x0000000000010000                _as_USB2_OHCI_size = 0x10000
+                0x00000000e4030000                _as_USB2_OHCI_end = 0xe4030000
+                0x00000000e40b0000                _as_USB1_OHCI = 0xe40b0000
+                0x0000000000010000                _as_USB1_OHCI_size = 0x10000
+                0x00000000e40c0000                _as_USB1_OHCI_end = 0xe40c0000
+                0x00000000e40c0000                _as_UDC1 = 0xe40c0000
+                0x0000000000010000                _as_UDC1_size = 0x10000
+                0x00000000e40d0000                _as_UDC1_end = 0xe40d0000
+                0x00000000e40d0000                _as_UDC2 = 0xe40d0000
+                0x0000000000010000                _as_UDC2_size = 0x10000
+                0x00000000e40e0000                _as_UDC2_end = 0xe40e0000
+                0x00000000e40e0000                _as_USBD_EHCI = 0xe40e0000
+                0x0000000000010000                _as_USBD_EHCI_size = 0x10000
+                0x00000000e40f0000                _as_USBD_EHCI_end = 0xe40f0000
+                0x00000000e5000000                _as_DMAC2 = 0xe5000000
+                0x0000000000010000                _as_DMAC2_size = 0x10000
+                0x00000000e5010000                _as_DMAC2_end = 0xe5010000
+                0x00000000e5010000                _as_DMAC3 = 0xe5010000
+                0x0000000000010000                _as_DMAC3_size = 0x10000
+                0x00000000e5020000                _as_DMAC3_end = 0xe5020000
+                0x00000000e5020000                _as_IFTU0 = 0xe5020000
+                0x0000000000010000                _as_IFTU0_size = 0x10000
+                0x00000000e5030000                _as_IFTU0_end = 0xe5030000
+                0x00000000e5030000                _as_IFTU1 = 0xe5030000
+                0x0000000000010000                _as_IFTU1_size = 0x10000
+                0x00000000e5040000                _as_IFTU1_end = 0xe5040000
+                0x00000000e5040000                _as_IFTU2 = 0xe5040000
+                0x0000000000010000                _as_IFTU2_size = 0x10000
+                0x00000000e5050000                _as_IFTU2_end = 0xe5050000
+                0x00000000e5050000                _as_DSI0 = 0xe5050000
+                0x0000000000010000                _as_DSI0_size = 0x10000
+                0x00000000e5060000                _as_DSI0_end = 0xe5060000
+                0x00000000e5060000                _as_DSI1 = 0xe5060000
+                0x0000000000010000                _as_DSI1_size = 0x10000
+                0x00000000e5070000                _as_DSI1_end = 0xe5070000
+                0x00000000e5070000                _as_COMPAT_MAILBOX = 0xe5070000
+                0x0000000000010000                _as_COMPAT_MAILBOX_size = 0x10000
+                0x00000000e5080000                _as_COMPAT_MAILBOX_end = 0xe5080000
+                0x00000000e5080000                _as_COMPAT_LCDDMAC = 0xe5080000
+                0x0000000000010000                _as_COMPAT_LCDDMAC_size = 0x10000
+                0x00000000e5090000                _as_COMPAT_LCDDMAC_end = 0xe5090000
+                0x00000000e50c0000                _as_DMAC6 = 0xe50c0000
+                0x0000000000010000                _as_DMAC6_size = 0x10000
+                0x00000000e50d0000                _as_DMAC6_end = 0xe50d0000
+                0x00000000e50d0000                _as_PFM = 0xe50d0000
+                0x0000000000010000                _as_PFM_size = 0x10000
+                0x00000000e50e0000                _as_PFM_end = 0xe50e0000
+                0x00000000e5800000                _as_SDIO0 = 0xe5800000
+                0x0000000000010000                _as_SDIO0_size = 0x10000
+                0x00000000e5810000                _as_SDIO0_end = 0xe5810000
+                0x00000000e5810000                _as_SDIO1 = 0xe5810000
+                0x0000000000010000                _as_SDIO1_size = 0x10000
+                0x00000000e5820000                _as_SDIO1_end = 0xe5820000
+                0x00000000e5880000                _as_LPDDR1_CFG = 0xe5880000
+                0x0000000000010000                _as_LPDDR1_CFG_size = 0x10000
+                0x00000000e5890000                _as_LPDDR1_CFG_end = 0xe5890000
+                0x00000000e6000000                _as_LPDDR0_CFG = 0xe6000000
+                0x0000000000010000                _as_LPDDR0_CFG_size = 0x10000
+                0x00000000e6010000                _as_LPDDR0_CFG_end = 0xe6010000
+                0x00000000e8000000                _as_REGBUS = 0xe8000000
+                0x0000000000010000                _as_REGBUS_size = 0x10000
+                0x00000000e8010000                _as_REGBUS_end = 0xe8010000
+                0x00000000e8100000                _as_COMPAT_SRAM = 0xe8100000
+                0x0000000000001000                _as_COMPAT_SRAM_size = 0x1000
+                0x00000000e8101000                _as_COMPAT_SRAM_end = 0xe8101000
+                0x00000000e8200000                _as_EMC_TOP = 0xe8200000
+                0x0000000000001000                _as_EMC_TOP_size = 0x1000
+                0x00000000e8201000                _as_EMC_TOP_end = 0xe8201000
+                0x00000000e8300000                _as_GRAB = 0xe8300000
+                0x0000000000010000                _as_GRAB_size = 0x10000
+                0x00000000e8310000                _as_GRAB_end = 0xe8310000
+                0x00000000e8400000                _as_SGX541ALL = 0xe8400000
+                0x0000000000004000                _as_SGX541ALL_size = 0x4000
+                0x00000000e8404000                _as_SGX541ALL_end = 0xe8404000
+                0x00000000e8404000                _as_SGX541CORE0 = 0xe8404000
+                0x0000000000004000                _as_SGX541CORE0_size = 0x4000
+                0x00000000e8408000                _as_SGX541CORE0_end = 0xe8408000
+                0x00000000e8408000                _as_SGX541CORE1 = 0xe8408000
+                0x0000000000004000                _as_SGX541CORE1_size = 0x4000
+                0x00000000e840c000                _as_SGX541CORE1_end = 0xe840c000
+                0x00000000e840c000                _as_SGX541CORE2 = 0xe840c000
+                0x0000000000004000                _as_SGX541CORE2_size = 0x4000
+                0x00000000e8410000                _as_SGX541CORE2_end = 0xe8410000
+                0x00000000e8410000                _as_SGX541CORE3 = 0xe8410000
+                0x0000000000004000                _as_SGX541CORE3_size = 0x4000
+                0x00000000e8414000                _as_SGX541CORE3_end = 0xe8414000
+                0x00000000e8414000                _as_SGX541MP4P = 0xe8414000
+                0x0000000000004000                _as_SGX541MP4P_size = 0x4000
+                0x00000000e8418000                _as_SGX541MP4P_end = 0xe8418000
+                0x00000000ec000000                _as_MAIN_XBAR = 0xec000000
+                0x0000000000100000                _as_MAIN_XBAR_size = 0x100000
+                0x00000000ec100000                _as_MAIN_XBAR_end = 0xec100000
+                0x00000000ec100000                _as_CENTER_XBAR = 0xec100000
+                0x0000000000100000                _as_CENTER_XBAR_size = 0x100000
+                0x00000000ec200000                _as_CENTER_XBAR_end = 0xec200000
+                0x00000000ec200000                _as_VIDEO_XBAR = 0xec200000
+                0x0000000000100000                _as_VIDEO_XBAR_size = 0x100000
+                0x00000000ec300000                _as_VIDEO_XBAR_end = 0xec300000
+                0x00000000ec300000                _as_IFTU_XBAR = 0xec300000
+                0x0000000000100000                _as_IFTU_XBAR_size = 0x100000
+                0x00000000ec400000                _as_IFTU_XBAR_end = 0xec400000
+                0x00000000ec400000                _as_VIP_XBAR = 0xec400000
+                0x0000000000100000                _as_VIP_XBAR_size = 0x100000
+                0x00000000ec500000                _as_VIP_XBAR_end = 0xec500000
+                0x00000000ec500000                _as_DEBUG_BUS = 0xec500000
+                0x0000000000100000                _as_DEBUG_BUS_size = 0x100000
+                0x00000000ec600000                _as_DEBUG_BUS_end = 0xec600000
+                0x00000000ec600000                _as_DMAC_XBAR = 0xec600000
+                0x0000000000100000                _as_DMAC_XBAR_size = 0x100000
+                0x00000000ec700000                _as_DMAC_XBAR_end = 0xec700000
+                0x00000000ed000000                _as_IO_SLAVE_BUS = 0xed000000
+                0x0000000000100000                _as_IO_SLAVE_BUS_size = 0x100000
+                0x00000000ed100000                _as_IO_SLAVE_BUS_end = 0xed100000
+                0x00000000ed100000                _as_IO_MASTER_BUS = 0xed100000
+                0x0000000000100000                _as_IO_MASTER_BUS_size = 0x100000
+                0x00000000ed200000                _as_IO_MASTER_BUS_end = 0xed200000
+                0x00000000ed200000                _as_PERVASIVE_BUS = 0xed200000
+                0x0000000000100000                _as_PERVASIVE_BUS_size = 0x100000
+                0x00000000ed300000                _as_PERVASIVE_BUS_end = 0xed300000
+                0x00000000ed300000                _as_MISC_IO_BUS = 0xed300000
+                0x0000000000100000                _as_MISC_IO_BUS_size = 0x100000
+                0x00000000ed400000                _as_MISC_IO_BUS_end = 0xed400000
+                0x00000000ed400000                _as_NIO_MASTER_BUS = 0xed400000
+                0x0000000000100000                _as_NIO_MASTER_BUS_size = 0x100000
+                0x00000000ed500000                _as_NIO_MASTER_BUS_end = 0xed500000
+                0x00000000ed500000                _as_AUDIO_BUS = 0xed500000
+                0x0000000000100000                _as_AUDIO_BUS_size = 0x100000
+                0x00000000ed600000                _as_AUDIO_BUS_end = 0xed600000
+                0x00000000ed600000                _as_NIO_SLAVE_BUS = 0xed600000
+                0x0000000000100000                _as_NIO_SLAVE_BUS_size = 0x100000
+                0x00000000ed700000                _as_NIO_SLAVE_BUS_end = 0xed700000
+                0x00000000ed700000                _as_SRC_BUS = 0xed700000
+                0x0000000000100000                _as_SRC_BUS_size = 0x100000
+                0x00000000ed800000                _as_SRC_BUS_end = 0xed800000
+                0x00000000ed800000                _as_GPU_REG_BUS = 0xed800000
+                0x0000000000100000                _as_GPU_REG_BUS_size = 0x100000
+                0x00000000ed900000                _as_GPU_REG_BUS_end = 0xed900000
+                0x00000000ed900000                _as_IFTU_REG_BUS = 0xed900000
+                0x0000000000100000                _as_IFTU_REG_BUS_size = 0x100000
+                0x00000000eda00000                _as_IFTU_REG_BUS_end = 0xeda00000
+                0x00000000ee000000                _as_CAM_SLAVE_BUS = 0xee000000
+                0x0000000000100000                _as_CAM_SLAVE_BUS_size = 0x100000
+                0x00000000ee100000                _as_CAM_SLAVE_BUS_end = 0xee100000
+                0x00000000ee100000                _as_CAM_MASTER_BUS = 0xee100000
+                0x0000000000100000                _as_CAM_MASTER_BUS_size = 0x100000
+                0x00000000ee200000                _as_CAM_MASTER_BUS_end = 0xee200000
+                0x00000000ee200000                _as_USB_SLAVE_BUS = 0xee200000
+                0x0000000000100000                _as_USB_SLAVE_BUS_size = 0x100000
+                0x00000000ee300000                _as_USB_SLAVE_BUS_end = 0xee300000
+                0x00000000ee300000                _as_USB_MASTER_BUS = 0xee300000
+                0x0000000000100000                _as_USB_MASTER_BUS_size = 0x100000
+                0x00000000ee400000                _as_USB_MASTER_BUS_end = 0xee400000
+                0x00000000ee400000                _as_SLCD_SLAVE_BUS = 0xee400000
+                0x0000000000100000                _as_SLCD_SLAVE_BUS_size = 0x100000
+                0x00000000ee500000                _as_SLCD_SLAVE_BUS_end = 0xee500000
+                0x00000000ee500000                _as_SLCD_MASTER_BUS = 0xee500000
+                0x0000000000100000                _as_SLCD_MASTER_BUS_size = 0x100000
+                0x00000000ee600000                _as_SLCD_MASTER_BUS_end = 0xee600000
+                0x00000000ee600000                _as_CAM_REG_BUS = 0xee600000
+                0x0000000000100000                _as_CAM_REG_BUS_size = 0x100000
+                0x00000000ee700000                _as_CAM_REG_BUS_end = 0xee700000
 
 .cfg            0x0000000000000000        0x0
-                0x0000000000008000                cfg_prog_uses_end = 0x8000
-                0x0000000000008000                cfg_sp_core0_addr = 0x8000
-                0x0000000000007000                cfg_sp_core1_addr = 0x7000
-                0x0000000000006000                cfg_sp_core2_addr = 0x6000
-                0x0000000000005000                cfg_sp_core3_addr = 0x5000
-                0x0000000000004000                cfg_max_prog_size = 0x4000
-                0x0000000000000000                cfg_prog_load_off = 0x0
-                0x000000001f000000                cfg_phys_load_off = 0x1f000000
+                0x0000000000008000                cfg_prog_uses_end = _as_ARM_BOOT_end
+                0x0000000000001000                cfg_sp_pcore_size = 0x1000
+                0x0000000000008000                cfg_sp_core0_addr = cfg_prog_uses_end
+                0x0000000000007000                cfg_sp_core1_addr = (cfg_sp_core0_addr - cfg_sp_pcore_size)
+                0x0000000000006000                cfg_sp_core2_addr = (cfg_sp_core1_addr - cfg_sp_pcore_size)
+                0x0000000000005000                cfg_sp_core3_addr = (cfg_sp_core2_addr - cfg_sp_pcore_size)
+                0x0000000000004000                cfg_prog_load_end = (cfg_sp_core3_addr - cfg_sp_pcore_size)
+                0x0000000000000000                cfg_prog_load_off = _as_ARM_BOOT
+                0x000000001f000000                cfg_phys_load_off = _as_SPAD32K
+                0x0000000000004000                cfg_max_prog_size = (cfg_prog_load_end - cfg_prog_load_off)
                 0x0000000000000000                . = cfg_prog_load_off
 
-.text           0x0000000000000000     0x2336
+.text           0x0000000000000000     0x2386
  *(.text.vectors)
  .text.vectors  0x0000000000000000       0x50 source/vector.ao
                 0x0000000000000000                vectors_exceptions
@@ -119,232 +492,234 @@ LOAD /tmp/cc0CqgRh.o
                 0x0000000000001030                pervasive_control_gate
                 0x000000000000106e                pervasive_control_clock
                 0x0000000000001094                pervasive_control_misc
- .text          0x00000000000010b8      0x440 source/rp.o
+ .text          0x00000000000010b8      0x488 source/rp.o
                 0x00000000000010b8                rpc_loop
-                0x000000000000144c                rpc_loop_bobcompat
- .text          0x00000000000014f8      0x730 source/sdif.o
-                0x0000000000001a3c                sdif_read_sector_sd
-                0x0000000000001aa6                sdif_write_sector_sd
-                0x0000000000001b10                sdif_read_sector_mmc
-                0x0000000000001b9c                sdif_write_sector_mmc
- .text          0x0000000000001c28       0xa8 source/spi.o
-                0x0000000000001c28                spi_init
-                0x0000000000001c70                spi_write_start
-                0x0000000000001c88                spi_write_end
-                0x0000000000001c9e                spi_write
-                0x0000000000001ca8                spi_read_available
-                0x0000000000001cb2                spi_read
-                0x0000000000001cbc                spi_read_end
- .text          0x0000000000001cd0      0x24c source/stor.o
-                0x0000000000001cd0                stor_init_sd
-                0x0000000000001d44                stor_init_emmc
-                0x0000000000001db4                stor_read_sd
-                0x0000000000001df0                stor_write_sd
-                0x0000000000001e2c                stor_read_emmc
-                0x0000000000001e68                stor_write_emmc
-                0x0000000000001ea4                stor_export_ctx
-                0x0000000000001ee0                stor_import_ctx
- .text          0x0000000000001f1c        0x2 source/test.o
-                0x0000000000001f1c                dfl_test
- *fill*         0x0000000000001f1e        0x2 
- .text          0x0000000000001f20       0x40 source/three.o
-                0x0000000000001f20                three_nop
-                0x0000000000001f24                three_get_task_by_id
-                0x0000000000001f34                three_init
-                0x0000000000001f50                three_main
- .text          0x0000000000001f60       0x40 source/two.o
-                0x0000000000001f60                two_nop
-                0x0000000000001f64                two_get_task_by_id
-                0x0000000000001f74                two_init
-                0x0000000000001f90                two_main
- .text          0x0000000000001fa0       0xd0 source/uart.o
-                0x0000000000001fa0                uart_init
-                0x0000000000002004                uart_write
-                0x000000000000201e                uart_print
-                0x0000000000002044                uart_printn
- .text          0x0000000000002070       0xa4 source/utils.o
-                0x0000000000002070                delay_nx
-                0x0000000000002098                get_build_timestamp
-                0x00000000000020a0                stub
-                0x00000000000020a8                get_cpu_id
-                0x00000000000020b2                get_dfsr
-                0x00000000000020c2                get_ifsr
-                0x00000000000020d2                get_adfsr
-                0x00000000000020e2                get_aifsr
-                0x00000000000020f2                get_dfar
-                0x0000000000002102                get_ifar
- .text          0x0000000000002114       0xb4 source/zero.o
-                0x0000000000002114                zero_nop
-                0x0000000000002118                zero_get_task_by_id
-                0x0000000000002130                zero_enable_rpc
-                0x000000000000217c                zero_init
-                0x0000000000002198                zero_main
- *fill*         0x00000000000021c8        0x8 
- .text          0x00000000000021d0        0x0 source/ex.ao
- .text.exh      0x00000000000021d0      0x140 source/ex.ao
-                0x00000000000021d0                exc_prehandlers
-                0x00000000000021d0                exc_UNDEF
-                0x00000000000021e0                exc_SWI
-                0x00000000000021f0                exc_PABT
-                0x0000000000002200                exc_DABT
-                0x0000000000002210                exc_RESERVED
-                0x0000000000002220                exc_IRQ
-                0x0000000000002230                exc_FIQ
-                0x0000000000002240                exc_RESET
-                0x00000000000022d4                exc_EXC
- .text          0x0000000000002310        0x0 source/vector.ao
- .text          0x0000000000002310        0x0 source/export.ao
- .text.exports  0x0000000000002310       0x20 source/export.ao
-                0x0000000000002310                x_main
-                0x0000000000002310                exports
-                0x0000000000002318                x_init
-                0x0000000000002320                x_debug_printFormat
-                0x0000000000002328                x_core_schedule_task
- .text          0x0000000000002330        0x0 source/xconfig.ao
- .text          0x0000000000002330        0x0 /tmp/cc0CqgRh.o
- .text.util_s   0x0000000000002330        0x6 /tmp/cc0CqgRh.o
-                0x0000000000002330                delay
+                0x0000000000001464                rpc_loop_bobcompat
+ .text          0x0000000000001540      0x730 source/sdif.o
+                0x0000000000001a84                sdif_read_sector_sd
+                0x0000000000001aee                sdif_write_sector_sd
+                0x0000000000001b58                sdif_read_sector_mmc
+                0x0000000000001be4                sdif_write_sector_mmc
+ .text          0x0000000000001c70       0xa8 source/spi.o
+                0x0000000000001c70                spi_init
+                0x0000000000001cb8                spi_write_start
+                0x0000000000001cd0                spi_write_end
+                0x0000000000001ce6                spi_write
+                0x0000000000001cf0                spi_read_available
+                0x0000000000001cfa                spi_read
+                0x0000000000001d04                spi_read_end
+ .text          0x0000000000001d18      0x24c source/stor.o
+                0x0000000000001d18                stor_init_sd
+                0x0000000000001d8c                stor_init_emmc
+                0x0000000000001dfc                stor_read_sd
+                0x0000000000001e38                stor_write_sd
+                0x0000000000001e74                stor_read_emmc
+                0x0000000000001eb0                stor_write_emmc
+                0x0000000000001eec                stor_export_ctx
+                0x0000000000001f28                stor_import_ctx
+ .text          0x0000000000001f64       0x10 source/test.o
+                0x0000000000001f64                dfl_test
+ .text          0x0000000000001f74       0x40 source/three.o
+                0x0000000000001f74                three_nop
+                0x0000000000001f78                three_get_task_by_id
+                0x0000000000001f88                three_init
+                0x0000000000001fa4                three_main
+ .text          0x0000000000001fb4       0x40 source/two.o
+                0x0000000000001fb4                two_nop
+                0x0000000000001fb8                two_get_task_by_id
+                0x0000000000001fc8                two_init
+                0x0000000000001fe4                two_main
+ .text          0x0000000000001ff4       0xd0 source/uart.o
+                0x0000000000001ff4                uart_init
+                0x0000000000002058                uart_write
+                0x0000000000002072                uart_print
+                0x0000000000002098                uart_printn
+ .text          0x00000000000020c4       0xa4 source/utils.o
+                0x00000000000020c4                delay_nx
+                0x00000000000020ec                get_build_timestamp
+                0x00000000000020f4                stub
+                0x00000000000020fc                get_cpu_id
+                0x0000000000002106                get_dfsr
+                0x0000000000002116                get_ifsr
+                0x0000000000002126                get_adfsr
+                0x0000000000002136                get_aifsr
+                0x0000000000002146                get_dfar
+                0x0000000000002156                get_ifar
+ .text          0x0000000000002168       0xb4 source/zero.o
+                0x0000000000002168                zero_nop
+                0x000000000000216c                zero_get_task_by_id
+                0x0000000000002184                zero_enable_rpc
+                0x00000000000021d0                zero_init
+                0x00000000000021ec                zero_main
+ *fill*         0x000000000000221c        0x4 
+ .text          0x0000000000002220        0x0 source/ex.ao
+ .text.exh      0x0000000000002220      0x140 source/ex.ao
+                0x0000000000002220                exc_prehandlers
+                0x0000000000002220                exc_UNDEF
+                0x0000000000002230                exc_SWI
+                0x0000000000002240                exc_PABT
+                0x0000000000002250                exc_DABT
+                0x0000000000002260                exc_RESERVED
+                0x0000000000002270                exc_IRQ
+                0x0000000000002280                exc_FIQ
+                0x0000000000002290                exc_RESET
+                0x0000000000002324                exc_EXC
+ .text          0x0000000000002360        0x0 source/vector.ao
+ .text          0x0000000000002360        0x0 source/export.ao
+ .text.exports  0x0000000000002360       0x20 source/export.ao
+                0x0000000000002360                x_main
+                0x0000000000002360                exports
+                0x0000000000002368                x_init
+                0x0000000000002370                x_debug_printFormat
+                0x0000000000002378                x_core_schedule_task
+ .text          0x0000000000002380        0x0 source/xconfig.ao
+ .text          0x0000000000002380        0x0 /tmp/ccaeuwQ1.o
+ .text.util_s   0x0000000000002380        0x6 /tmp/ccaeuwQ1.o
+                0x0000000000002380                delay
 
-.glue_7         0x0000000000002338        0x0
- .glue_7        0x0000000000002338        0x0 linker stubs
+.glue_7         0x0000000000002388        0x0
+ .glue_7        0x0000000000002388        0x0 linker stubs
 
-.glue_7t        0x0000000000002338        0x0
- .glue_7t       0x0000000000002338        0x0 linker stubs
+.glue_7t        0x0000000000002388        0x0
+ .glue_7t       0x0000000000002388        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000002338        0x0
- .vfp11_veneer  0x0000000000002338        0x0 linker stubs
+.vfp11_veneer   0x0000000000002388        0x0
+ .vfp11_veneer  0x0000000000002388        0x0 linker stubs
 
-.v4_bx          0x0000000000002338        0x0
- .v4_bx         0x0000000000002338        0x0 linker stubs
+.v4_bx          0x0000000000002388        0x0
+ .v4_bx         0x0000000000002388        0x0 linker stubs
 
-.iplt           0x0000000000002338        0x0
- .iplt          0x0000000000002338        0x0 source/bob.o
+.iplt           0x0000000000002388        0x0
+ .iplt          0x0000000000002388        0x0 source/bob.o
 
-.rodata         0x0000000000002338      0x3f1
+.rodata         0x0000000000002388      0x3f1
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000002338       0x58 source/compat.o
+                0x0000000000002388       0x58 source/compat.o
  .rodata.str1.1
-                0x0000000000002390       0x30 source/debug.o
- .rodata        0x00000000000023c0       0x11 source/debug.o
- *fill*         0x00000000000023d1        0x3 
+                0x00000000000023e0       0x30 source/debug.o
+ .rodata        0x0000000000002410       0x11 source/debug.o
+ *fill*         0x0000000000002421        0x3 
  .rodata.str1.1
-                0x00000000000023d4       0xa0 source/ex.o
+                0x0000000000002424       0xa0 source/ex.o
  .rodata.str1.1
-                0x0000000000002474       0x26 source/glitch.o
- *fill*         0x000000000000249a        0x2 
+                0x00000000000024c4       0x26 source/glitch.o
+ *fill*         0x00000000000024ea        0x2 
  .rodata.str1.1
-                0x000000000000249c       0xc1 source/main.o
- *fill*         0x000000000000255d        0x3 
+                0x00000000000024ec       0xc1 source/main.o
+ *fill*         0x00000000000025ad        0x3 
  .rodata.str1.1
-                0x0000000000002560        0x7 source/one.o
- *fill*         0x0000000000002567        0x1 
+                0x00000000000025b0        0x7 source/one.o
+ *fill*         0x00000000000025b7        0x1 
  .rodata.str1.1
-                0x0000000000002568       0xdd source/rp.o
+                0x00000000000025b8       0xdd source/rp.o
                                          0xef (size before relaxing)
- *fill*         0x0000000000002645        0x3 
+ *fill*         0x0000000000002695        0x3 
  .rodata.str1.1
-                0x0000000000002648       0xca source/stor.o
+                0x0000000000002698       0xca source/stor.o
  .rodata.str1.1
-                0x0000000000002712        0x7 source/three.o
+                0x0000000000002762        0x7 source/three.o
  .rodata.str1.1
-                0x0000000000002712        0x7 source/two.o
- *fill*         0x0000000000002712        0x2 
+                0x0000000000002762        0x7 source/two.o
+ *fill*         0x0000000000002762        0x2 
  .rodata.str1.1
-                0x0000000000002714       0x15 source/zero.o
+                0x0000000000002764       0x15 source/zero.o
                                          0x1c (size before relaxing)
 
-.rel.dyn        0x000000000000272c        0x0
- .rel.iplt      0x000000000000272c        0x0 source/bob.o
+.rel.dyn        0x000000000000277c        0x0
+ .rel.iplt      0x000000000000277c        0x0 source/bob.o
 
-.data           0x000000000000272c       0x5c
+.data           0x000000000000277c       0x6c
  *(.data*)
- .data          0x000000000000272c        0x0 source/bob.o
- .data          0x000000000000272c        0x0 source/clib.o
- .data          0x000000000000272c        0x0 source/compat.o
- .data          0x000000000000272c        0x0 source/coring.o
- .data          0x000000000000272c       0x20 source/debug.o
-                0x000000000000272c                l_debug_core_printf_use_id
-                0x000000000000273c                l_debug_core_printf_id
- .data          0x000000000000274c        0x0 source/ernie.o
- .data          0x000000000000274c       0x24 source/ex.o
-                0x000000000000274c                g_bss_NOTcleared
-                0x0000000000002750                exc_types
- .data          0x0000000000002770        0x0 source/glitch.o
- .data          0x0000000000002770        0x0 source/gpio.o
- .data          0x0000000000002770        0x0 source/i2.o
- .data          0x0000000000002770        0x0 source/jig.o
- .data          0x0000000000002770        0x0 source/main.o
- .data          0x0000000000002770        0x0 source/one.o
- .data          0x0000000000002770        0x0 source/perv.o
- .data          0x0000000000002770        0x0 source/rp.o
- .data          0x0000000000002770        0x0 source/sdif.o
- .data          0x0000000000002770        0x0 source/spi.o
- .data          0x0000000000002770        0x0 source/stor.o
- .data          0x0000000000002770        0x0 source/test.o
- .data          0x0000000000002770        0x0 source/three.o
- .data          0x0000000000002770        0x0 source/two.o
- .data          0x0000000000002770        0x0 source/uart.o
- .data          0x0000000000002770        0x0 source/utils.o
- .data          0x0000000000002770        0x0 source/zero.o
- .data          0x0000000000002770        0x0 source/ex.ao
- .data          0x0000000000002770        0x0 source/vector.ao
- .data          0x0000000000002770        0x0 source/export.ao
- .data          0x0000000000002770        0x0 source/xconfig.ao
- .data.xcfg     0x0000000000002770       0x18 source/xconfig.ao
-                0x0000000000002770                xcfg
-                0x0000000000002770                xcfg_sp_addr_per_core
-                0x0000000000002780                xcfg_uart_bus
-                0x0000000000002784                xcfg_uart_rate
- .data          0x0000000000002788        0x0 /tmp/cc0CqgRh.o
-                0x0000000000002788                . = ALIGN (0x4)
+ .data          0x000000000000277c        0x0 source/bob.o
+ .data          0x000000000000277c        0x0 source/clib.o
+ .data          0x000000000000277c        0x0 source/compat.o
+ .data          0x000000000000277c        0x0 source/coring.o
+ .data          0x000000000000277c       0x20 source/debug.o
+                0x000000000000277c                l_debug_core_printf_use_id
+                0x000000000000278c                l_debug_core_printf_id
+ .data          0x000000000000279c        0x0 source/ernie.o
+ .data          0x000000000000279c       0x24 source/ex.o
+                0x000000000000279c                g_bss_NOTcleared
+                0x00000000000027a0                exc_types
+ .data          0x00000000000027c0        0x0 source/glitch.o
+ .data          0x00000000000027c0        0x0 source/gpio.o
+ .data          0x00000000000027c0        0x0 source/i2.o
+ .data          0x00000000000027c0        0x0 source/jig.o
+ .data          0x00000000000027c0        0x0 source/main.o
+ .data          0x00000000000027c0        0x0 source/one.o
+ .data          0x00000000000027c0        0x0 source/perv.o
+ .data          0x00000000000027c0        0x0 source/rp.o
+ .data          0x00000000000027c0        0x0 source/sdif.o
+ .data          0x00000000000027c0        0x0 source/spi.o
+ .data          0x00000000000027c0        0x0 source/stor.o
+ .data          0x00000000000027c0        0x0 source/test.o
+ .data          0x00000000000027c0        0x0 source/three.o
+ .data          0x00000000000027c0        0x0 source/two.o
+ .data          0x00000000000027c0        0x0 source/uart.o
+ .data          0x00000000000027c0        0x0 source/utils.o
+ .data          0x00000000000027c0        0x0 source/zero.o
+ .data          0x00000000000027c0        0x0 source/ex.ao
+ .data          0x00000000000027c0        0x0 source/vector.ao
+ .data          0x00000000000027c0        0x0 source/export.ao
+ .data          0x00000000000027c0        0x0 source/xconfig.ao
+ .data.xcfg     0x00000000000027c0       0x28 source/xconfig.ao
+                0x00000000000027c0                xcfg
+                0x00000000000027c0                xcfg_sp_addr_per_core
+                0x00000000000027d0                xcfg_uart_bus
+                0x00000000000027d4                xcfg_uart_rate
+                0x00000000000027d8                xcfg_sp_size_per_core
+ .data          0x00000000000027e8        0x0 /tmp/ccaeuwQ1.o
+                0x00000000000027e8                . = ALIGN (0x4)
 
-.igot.plt       0x0000000000002788        0x0
- .igot.plt      0x0000000000002788        0x0 source/bob.o
+.igot.plt       0x00000000000027e8        0x0
+ .igot.plt      0x00000000000027e8        0x0 source/bob.o
 
-.bss            0x0000000000002788      0x284
-                0x0000000000002788                prog_bss_addr = .
+.bss            0x00000000000027e8      0x284
+                0x00000000000027e8                prog_bss_addr = .
  *(.bss*)
- .bss           0x0000000000002788      0x140 source/bob.o
-                0x0000000000002788                l_bob_a2b_cmds
-                0x00000000000027c8                x_bob_b2a_ishmem
- .bss           0x00000000000028c8        0x0 source/clib.o
- .bss           0x00000000000028c8        0x0 source/compat.o
- .bss           0x00000000000028c8       0x20 source/coring.o
-                0x00000000000028c8                g_core_tasks
-                0x00000000000028d8                g_core_status
- .bss           0x00000000000028e8        0x0 source/debug.o
- .bss           0x00000000000028e8       0x40 source/ernie.o
-                0x00000000000028e8                g_ernie_comms
- .bss           0x0000000000002928        0x0 source/ex.o
- .bss           0x0000000000002928        0x4 source/glitch.o
-                0x0000000000002928                l_glitch_success
- .bss           0x000000000000292c        0x0 source/gpio.o
- .bss           0x000000000000292c        0x0 source/i2.o
- .bss           0x000000000000292c        0x0 source/jig.o
- .bss           0x000000000000292c        0x0 source/main.o
- .bss           0x000000000000292c        0x0 source/one.o
- .bss           0x000000000000292c        0x0 source/perv.o
- .bss           0x000000000000292c       0x48 source/rp.o
-                0x000000000000292c                g_rpc_status
-                0x0000000000002970                l_completed_acquire
- .bss           0x0000000000002974        0x0 source/sdif.o
- .bss           0x0000000000002974        0x0 source/spi.o
- .bss           0x0000000000002974       0x78 source/stor.o
- .bss           0x00000000000029ec        0x0 source/test.o
- .bss           0x00000000000029ec        0x0 source/three.o
- .bss           0x00000000000029ec        0x0 source/two.o
- .bss           0x00000000000029ec        0x0 source/uart.o
- .bss           0x00000000000029ec        0x0 source/utils.o
- .bss           0x00000000000029ec       0x20 source/zero.o
- .bss           0x0000000000002a0c        0x0 source/ex.ao
- .bss           0x0000000000002a0c        0x0 source/vector.ao
- .bss           0x0000000000002a0c        0x0 source/export.ao
- .bss           0x0000000000002a0c        0x0 source/xconfig.ao
- .bss           0x0000000000002a0c        0x0 /tmp/cc0CqgRh.o
+ .bss           0x00000000000027e8      0x140 source/bob.o
+                0x00000000000027e8                l_bob_a2b_cmds
+                0x0000000000002828                x_bob_b2a_ishmem
+ .bss           0x0000000000002928        0x0 source/clib.o
+ .bss           0x0000000000002928        0x0 source/compat.o
+ .bss           0x0000000000002928       0x20 source/coring.o
+                0x0000000000002928                g_core_tasks
+                0x0000000000002938                g_core_status
+ .bss           0x0000000000002948        0x0 source/debug.o
+ .bss           0x0000000000002948       0x40 source/ernie.o
+                0x0000000000002948                g_ernie_comms
+ .bss           0x0000000000002988        0x0 source/ex.o
+ .bss           0x0000000000002988        0x4 source/glitch.o
+                0x0000000000002988                l_glitch_success
+ .bss           0x000000000000298c        0x0 source/gpio.o
+ .bss           0x000000000000298c        0x0 source/i2.o
+ .bss           0x000000000000298c        0x0 source/jig.o
+ .bss           0x000000000000298c        0x0 source/main.o
+ .bss           0x000000000000298c        0x0 source/one.o
+ .bss           0x000000000000298c        0x0 source/perv.o
+ .bss           0x000000000000298c       0x48 source/rp.o
+                0x000000000000298c                g_rpc_status
+                0x00000000000029d0                l_completed_acquire
+ .bss           0x00000000000029d4        0x0 source/sdif.o
+ .bss           0x00000000000029d4        0x0 source/spi.o
+ .bss           0x00000000000029d4       0x78 source/stor.o
+ .bss           0x0000000000002a4c        0x0 source/test.o
+ .bss           0x0000000000002a4c        0x0 source/three.o
+ .bss           0x0000000000002a4c        0x0 source/two.o
+ .bss           0x0000000000002a4c        0x0 source/uart.o
+ .bss           0x0000000000002a4c        0x0 source/utils.o
+ .bss           0x0000000000002a4c       0x20 source/zero.o
+ .bss           0x0000000000002a6c        0x0 source/ex.ao
+ .bss           0x0000000000002a6c        0x0 source/vector.ao
+ .bss           0x0000000000002a6c        0x0 source/export.ao
+ .bss           0x0000000000002a6c        0x0 source/xconfig.ao
+ .bss           0x0000000000002a6c        0x0 /tmp/ccaeuwQ1.o
  *(COMMON)
-                0x0000000000002a0c                . = ALIGN (0x4)
-                0x0000000000002a0c                prog_bss_end = .
+                0x0000000000002a6c                . = ALIGN (0x4)
+                0x0000000000002a6c                prog_bss_end = .
+                0x0000000000002a6c                prog_act_size = (. - cfg_prog_load_off)
+                0x0000000000000001                ASSERT (! ((prog_act_size > cfg_max_prog_size)), cfg_max_prog_size)
 OUTPUT(alice.elf elf32-littlearm)
 LOAD linker stubs
 
@@ -434,4 +809,4 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000000000005a9       0x2b source/xconfig.ao
  .ARM.attributes
-                0x00000000000005d4       0x2b /tmp/cc0CqgRh.o
+                0x00000000000005d4       0x2b /tmp/ccaeuwQ1.o
